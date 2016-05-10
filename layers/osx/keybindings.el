@@ -5,9 +5,13 @@
   (setq mac-command-modifier 'meta)
   (setq mac-right-command-modifier 'meta)
   (setq mac-option-modifier nil)
+  (setq ns-function-modifier 'super)
 
   ;; Keybindings
   (global-set-key [kp-delete] 'delete-char)
+  (global-set-key (kbd "s-]") 'other-window)
+  (global-set-key (kbd "s-}") 'other-frame)
+  (global-set-key (kbd "s-[") '(other-window -1))
   (global-set-key (kbd "s-=") 'spacemacs/scale-up-font)
   (global-set-key (kbd "s--") 'spacemacs/scale-down-font)
   (global-set-key (kbd "s-0") 'spacemacs/reset-font-size)
