@@ -32,3 +32,4 @@
   (global-set-key (kbd "C-s-f") 'spacemacs/toggle-frame-fullscreen)
   ;; Emacs sometimes registers C-s-f as this weird keycode
   (global-set-key (kbd "<C-s-268632070>") 'spacemacs/toggle-frame-fullscreen))
+  (global-set-key (kbd "M-`") 'other-frame)
