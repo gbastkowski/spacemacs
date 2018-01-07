@@ -1,4 +1,4 @@
-;;; keybindings.el --- Better Emacs Defaults Layer key bindings File
+;;; layers.el --- C/C++ layer layers File for Spacemacs
 ;;
 ;; Copyright (c) 2012-2018 Sylvain Benner & Contributors
 ;;
@@ -9,4 +9,4 @@
 ;;
 ;;; License: GPLv3
 
-(global-set-key (kbd "C-w") 'spacemacs/backward-kill-word-or-region)
+(configuration-layer/declare-layer 'gtags)
