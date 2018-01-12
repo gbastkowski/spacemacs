@@ -184,9 +184,10 @@
       (add-hook 'rtags-jump-hook 'evil-set-jump)
       (rtags-diagnostics)
       ;; key bindings
-      (define-key evil-normal-state-map (kbd "RET") 'rtags-select-other-window)
-      (define-key evil-normal-state-map (kbd "M-RET") 'rtags-select)
-      (define-key evil-normal-state-map (kbd "q") 'rtags-bury-or-delete)
+      (evil-define-key 'normal rtags-mode-map
+        (kbd "RET")   'rtags-select-other-window
+        (kbd "M-RET") 'rtags-select
+        (kbd "q")     'rtags-bury-or-delete)
       ;; TODO check for consistency with gtags key bindings
       ;; see https://github.com/syl20bnr/spacemacs/blob/develop/layers/+tags/gtags/funcs.el#L70
       (dolist (mode c-c++-modes)
@@ -253,7 +254,7 @@
     :if (or 'c-c++-enable-google-style 'c-c++-enable-google-newline)
     :config (progn
     (when 'c-c++-enable-google-style (add-hook 'c-mode-common-hook 'google-set-c-style))
-    (when 'c-c++-enable-google-newline (add-hook 'c-mode-common-hook 'google-set-c-style)))))
+    (when 'c-c++-enable-google-newline (add-hook 'c-mode-common-hook 'google-make-newline-indent)))))
 
 (defun c-c++/post-init-semantic ()
   (spacemacs/add-to-hooks 'semantic-mode c-c++-mode-hooks))
