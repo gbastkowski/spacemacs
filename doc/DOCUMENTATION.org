@@ -1399,8 +1399,8 @@ If you want to use this theme you need to make sure to install the required
 fonts from the package repository, see [[https://github.com/domtronn/all-the-icons.el/tree/master/fonts][all-the-icons fonts directory]].
 
 To change the separator type set the variable
-=spaceline-all-the-icons-separator-type=. All the powerline separators are
-supported (see table above).
+=spaceline-all-the-icons-separator-type=. Supported powerline separators are
+=slant=, =wave=, =cup=, =arrow= and =none= (see table above).
 
 *** Custom spaceline theme
 You can create your own Spaceline theme by setting the variable
@@ -2020,8 +2020,7 @@ The ~SPC j~ prefix is for jumping, joining and splitting.
 | ~SPC j f~   | jump to the definition of an Emacs Lisp function                                  |
 | ~SPC j i~   | jump to a definition in buffer (imenu)                                            |
 | ~SPC j I~   | jump to a definition in any buffer (imenu)                                        |
-| ~SPC j j~   | jump to a character in the buffer (works as an evil motion)                       |
-| ~SPC j J~   | jump to a suite of two characters in the buffer (works as an evil motion)         |
+| ~SPC j j~   | jump to one or more characters in the buffer (works as an evil motion)            |
 | ~SPC j k~   | jump to next line and indent it using auto-indent rules                           |
 | ~SPC j l~   | jump to a line with avy (works as an evil motion)                                 |
 | ~SPC j q~   | show the dumb-jump quick look tooltip                                             |
@@ -2102,6 +2101,7 @@ Windows manipulation commands (start with ~w~):
 | ~SPC w V~              | vertical split and focus new window                                         |
 | ~SPC w w~              | cycle and focus between windows                                             |
 | ~SPC w W~              | select window using [[https://github.com/abo-abo/ace-window][ace-window]]                                              |
+| ~SPC w x~              | delete a window and its current buffer (does not delete the file)           |
 
 **** Window manipulation transient state
 A convenient window manipulation transient state allows performing most of the
@@ -2186,6 +2186,7 @@ Buffer manipulation commands (start with ~b~):
 | ~SPC b s~       | switch to the =*scratch*= buffer (create it if needed)                   |
 | ~SPC b u~       | reopen the most recently killed file buffer                              |
 | ~SPC b w~       | toggle read-only (writable state)                                        |
+| ~SPC b x~       | kill the current buffer and window (does not delete the visited file)    |
 | ~SPC b Y~       | copy whole buffer to clipboard (useful when copying to a browser)        |
 | ~z f~           | Make current function or comments visible in buffer as much as possible  |
 
