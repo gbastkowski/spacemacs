@@ -92,17 +92,18 @@ done according to the value of `dotspacemacs-elpa-subdirectory'.
 This function also appends the name of the current branch of Spacemacs.
 If `dotspacemacs-elpa-subdirectory' is nil, then ROOT is used. Otherwise the
 subdirectory of ROOT is used."
-  (expand-file-name
-   configuration-layer-elpa-subdirectory
-   (if (not dotspacemacs-elpa-subdirectory)
-       root
-     (let ((subdir (if (eq 'emacs-version dotspacemacs-elpa-subdirectory)
-                       (format "%d%s%d"
-                               emacs-major-version
-                               version-separator
-                               emacs-minor-version)
-                     (eval dotspacemacs-elpa-subdirectory))))
-       (file-name-as-directory (expand-file-name subdir root))))))
+  (file-name-as-directory
+   (expand-file-name
+    configuration-layer-elpa-subdirectory
+    (if (not dotspacemacs-elpa-subdirectory)
+        root
+      (let ((subdir (if (eq 'emacs-version dotspacemacs-elpa-subdirectory)
+                        (format "%d%s%d"
+                                emacs-major-version
+                                version-separator
+                                emacs-minor-version)
+                      (eval dotspacemacs-elpa-subdirectory))))
+        (expand-file-name subdir root))))))
 
 (defun configuration-layer/get-elpa-package-install-directory (pkg)
   "Return the install directory of elpa PKG. Return nil if it is not found."
@@ -435,7 +436,11 @@ cache folder.")
                             configuration-layer-elpa-archives))
     ;; optimization, no need to activate all the packages so early
     (setq package-enable-at-startup nil)
-    (package-initialize 'noactivate)))
+    (package-initialize 'noactivate)
+    ;; hack to be sure to enable insalled org from Org ELPA repository
+    (when (package-installed-p 'org-plus-contrib)
+      (message "Initializing Org early...")
+      (configuration-layer//activate-package 'org-plus-contrib))))
 
 (defun configuration-layer//configure-quelpa ()
   "Configure `quelpa' package."
@@ -1688,10 +1693,18 @@ RNAME is the name symbol of another existing layer."
           (configuration-layer/retrieve-package-archives)
           (setq installed-count 0)
           (spacemacs//redisplay)
+          ;; bootstrap and pre step packages first
           (dolist (pkg-name upkg-names)
-            (setq installed-count (1+ installed-count))
-            (configuration-layer//install-package
-             (configuration-layer/get-package pkg-name)))
+            (let ((pkg (configuration-layer/get-package pkg-name)))
+              (when (and pkg (memq (oref pkg :step) '(bootstrap pre)))
+                (setq installed-count (1+ installed-count))
+                (configuration-layer//install-package pkg))))
+          ;; then all other packages
+          (dolist (pkg-name upkg-names)
+            (let ((pkg (configuration-layer/get-package pkg-name)))
+              (unless (and pkg (memq (oref pkg :step) '(bootstrap pre)))
+                (setq installed-count (1+ installed-count))
+                (configuration-layer//install-package pkg))))
           (spacemacs-buffer/append "\n")
           (unless init-file-debug
             ;; get rid of all delayed warnings when byte-compiling packages

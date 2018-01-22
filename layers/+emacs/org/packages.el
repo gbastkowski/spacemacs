@@ -54,7 +54,8 @@
     :init
     (progn
       (add-hook 'org-mode-hook 'spacemacs//evil-org-mode)
-      (setq evil-org-key-theme `(textobjects
+      (setq evil-org-use-additional-insert t
+            evil-org-key-theme `(textobjects
                                  navigation
                                  additional
                                  ,@(when org-want-todo-bindings '(todo)))))
@@ -494,6 +495,10 @@ Headline^^            Visit entry^^               Filter^^                    Da
       :bindings
       "j" 'org-agenda-next-line
       "k" 'org-agenda-previous-line
+      ;; C-h should not be rebound by evilification so we unshadow it manually
+      ;; TODO add the rule in auto-evilification to ignore C-h (like we do
+      ;; with C-g)
+      (kbd "C-h") nil
       (kbd "M-j") 'org-agenda-next-item
       (kbd "M-k") 'org-agenda-previous-item
       (kbd "M-h") 'org-agenda-earlier
@@ -540,10 +545,8 @@ Headline^^            Visit entry^^               Filter^^                    Da
 (defun org/init-org-mime ()
   (use-package org-mime
     :defer t
-    :commands (org-mime-htmlize org-mime-org-buffer-htmlize)
     :init
     (progn
-      ;; move this key bindings to an `init-message' function
       (spacemacs/set-leader-keys-for-major-mode 'message-mode
         "em" 'org-mime-htmlize)
       (spacemacs/set-leader-keys-for-major-mode 'org-mode
