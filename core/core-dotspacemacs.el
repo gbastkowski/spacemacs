@@ -55,6 +55,11 @@ exists. Otherwise, fallback to ~/.spacemacs"))
 `+distributions'. For now available distributions are `spacemacs-base'
 or `spacemacs'.")
 
+(defvar dotspacemacs-gc-cons '(100000000 0.1)
+  "Set `gc-cons-threshold' and `gc-cons-percentage' when startup finishes.
+This is an advanced option and should not be changed unless you suspect
+performance issues due to garbage collection operations.")
+
 (defvar dotspacemacs-elpa-https t
   "If non nil ELPA repositories are contacted via HTTPS whenever it's
 possible. Set it to nil if you have no way to use HTTPS in your
@@ -361,11 +366,6 @@ whitespace for changed lines or `nil' to disable cleanup.")
 (defvar dotspacemacs-search-tools '("rg" "ag" "pt" "ack" "grep")
   "List of search tool executable names. Spacemacs uses the first installed
 tool of the list. Supported tools are `rg', `ag', `pt', `ack' and `grep'.")
-
-(defvar dotspacemacs-default-package-repository 'melpa-stable
-  "The default package repository used if no explicit repository has been
-specified with an installed package.
-NOT USED FOR NOW :-)")
 
 (defvar dotspacemacs-startup-lists '((recents  . 5)
                                     (projects . 7))
