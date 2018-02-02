@@ -1,9 +1,8 @@
 (deftheme gunnar
-  "Created 2018-01-16.")
+  "Created 2018-01-31.")
 
 (custom-theme-set-faces
  'gunnar
- '(default ((t (:family "PragmataPro Mono" :foundry "nil" :width normal :height 130 :weight normal :slant normal :underline nil :overline nil :strike-through nil :box nil :inverse-video nil :foreground "#eeeeec" :background "gray20" :stipple nil :inherit nil))))
  '(cursor ((t (:foreground "#222222" :background "DarkGoldenrod2"))))
  '(fixed-pitch ((t (:inherit (default)))))
  '(variable-pitch ((((type w32)) (:foundry "outline" :family "Arial")) (t (:family "Sans Serif"))))
@@ -19,7 +18,7 @@
  '(font-lock-comment-face ((t (:foreground "#888a85"))))
  '(font-lock-constant-face ((t (:foreground "orchid"))))
  '(font-lock-doc-face ((t (:slant oblique :foreground "yellow green"))))
- '(font-lock-function-name-face ((t (:weight bold :foreground "gold"))))
+ '(font-lock-function-name-face ((t (:foreground "gold"))))
  '(font-lock-keyword-face ((t (:weight bold :inherit (font-lock-builtin-face)))))
  '(font-lock-negation-char-face ((t (:foreground "#6ac214"))))
  '(font-lock-preprocessor-face ((t (:inherit (font-lock-builtin-face)))))
@@ -45,6 +44,7 @@
  '(lazy-highlight ((t (:foreground "#2e3436" :background "#e9b96e"))))
  '(match ((t (:weight bold :foreground "#2e3436" :background "#e9b96e"))))
  '(next-error ((t (:inherit (region)))))
- '(query-replace ((t (:inherit (isearch))))))
+ '(query-replace ((t (:inherit (isearch)))))
+ '(default ((t (:family "PragmataPro Mono" :foundry "nil" :width normal :height 130 :weight normal :slant normal :underline nil :overline nil :strike-through nil :box nil :inverse-video nil :foreground "#eeeeec" :background "gray20" :stipple nil :inherit nil)))))
 
 (provide-theme 'gunnar)
