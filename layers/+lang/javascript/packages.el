@@ -28,11 +28,10 @@
          :requires lsp-mode
          :location (recipe :fetcher github
                            :repo "emacs-lsp/lsp-javascript"))
+        org
         skewer-mode
         tern
-        web-beautify
-        yasnippet
-        ))
+        web-beautify))
 
 (defun javascript/post-init-add-node-modules-path ()
   (spacemacs/add-to-hooks #'add-node-modules-path '(css-mode-hook
@@ -63,6 +62,10 @@
 (defun javascript/post-init-impatient-mode ()
   (spacemacs/set-leader-keys-for-major-mode 'js2-mode
     "i" 'spacemacs/impatient-mode))
+
+(defun javascript/pre-init-org ()
+  (spacemacs|use-package-add-hook org
+    :post-config (add-to-list 'org-babel-load-languages '(js . t))))
 
 (defun javascript/init-js-doc ()
   (use-package js-doc
@@ -202,8 +205,3 @@
 
 (defun javascript/pre-init-web-beautify ()
   (add-to-list 'spacemacs--web-beautify-modes (cons 'js2-mode 'web-beautify-js)))
-
-(defun javascript/pre-init-yasnippet ()
-  (spacemacs|use-package-add-hook yasnippet
-    :post-config
-    (yas-activate-extra-mode 'js-mode)))
