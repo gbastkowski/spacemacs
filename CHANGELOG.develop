@@ -392,6 +392,7 @@ sane way, here is the complete list of changed key bindings
   - New variable =dotspacemacs-zone-out-when-idle= to zone when idle. Zoning
     will obfuscate the current buffer acting like a screen saver.
     (thanks to Eugene Yaremenko and Sylvain Benner)
+  - New variable =dotspacemacs-undecorated-at-startup= (thanks to bb2020)
 Other:
   - Added =vim-style-visual-feedback= and =hybrid-style-visual-feedback= style
     variables to enable =evil-goggles= pulse in the Vim and Hybrid editing
@@ -473,6 +474,7 @@ Other:
   - Cached expensive computations in =spacemacs/title-prepare=
     (thanks to Dieter Komendera)
   - Added line text object using =evil-textobj-line= (thanks to Uroš Perišić)
+  - Added more =kaolin-themes= (thanks to ogdenwebb)
 - Fixed:
   - Avoid non-idempotent use of push in init code (thanks to Miciah Masters)
   - Moved Spacemacs startup progress bar to =core-progress-bar.el=, removed
@@ -545,6 +547,8 @@ Other:
   - Added startup support for doom-sourcerer theme (thanks to Parker Johnson)
   - Fixed modeline when started in deamon mode (thanks to Benno Fünfstück)
   - Fixed search for "find" executable in windows (thanks to Charlie Barto)
+  - Found workaround for =buffer-list-update-hook= performance issue.
+    (thanks to Alexander Miller)
 - Other:
   - New function =configuration-layer/message= to display message in
     =*Messages*= buffer (thanks to Sylvain Benner)
@@ -570,6 +574,8 @@ Other:
   - Added =pupo-split-active-window= variable to split the active window or the
     entire frame (thanks to tddsg)
   - New emacs banner: "100-banner.txt" (thanks to Robert Zaremba)
+  - Add Dogemacs inverted banner for dark themes: "997-banner.txt"
+    (thanks to Vitor Finotti and Robby O'Connor)
 *** Distribution changes
 - Refactored =spacemacs-bootstrap=, =spacemacs-ui=, and =spacemacs-ui-visual=
   layers:
@@ -1035,6 +1041,10 @@ Other:
 - Breaking changes:
   - Moved =cmake-ide= and cmake script support to separate =cmake= layer
     (thanks to Alexander Dalshov)
+- New packages:
+  - =cpp-auto-include= Insert and delete C++ header files automatically:
+    - Added variable: =++-enable-organize-includes-on-save=
+    - Added key binding: ~SPC m r i~ organize includes
 - Improvements:
   - Added =lsp= support using either =cquery= or =ccls= backends
     (thanks to Cormac Cannon, Sergey Litovchuk and Fangrui Song)
@@ -1215,6 +1225,9 @@ Other:
 **** Dash
 - Improvements:
   - Use default docsets path in =helm-dash= on macos (thanks to ColorFuzzy)
+- Fixes:
+  - Fix startup error when using counsel-dash with custom path in
+    helm-dash-docset-newpath (thanks to madand)
 **** Deft
 - Key bindings:
   - ~SPC m c~ clear deft filter (thanks to Bahtiar Gadimov)
@@ -1465,9 +1478,9 @@ Other:
   - ~SPC r i~ runs new =spacemacs/haskell-format-imports= function
   - ~SPC m g b~ returns from definition in =intero-mode=
     (thanks to Magnus Therning)
-- Fixed jump handlers conflict for haskell and intero (thanks to CthulhuDen)
-- Fixed haskell jump handler for dante (thanks to cjay)
 - Enable LSP mode using HIE.
+- Fixed jump handlers for =dante= and =inferno=
+  (thanks to cjay, CthulhuDen and Magnus Therning)
 **** Helm
 - Limited =ripgrep= results to 512 columns by default, and added
   =spacemacs-helm-rg-max-column-number= layer variable to configure the above
@@ -1517,6 +1530,7 @@ Other:
 - Added key binding `sC` for `helm-swoop-clear-cache` (thanks to Yang Qian)
 - Fixed =spacemacs//helm-open-buffers-in-windows= when opening more files than
   available windows (thanks to Juha Jeronen)
+- Load helm before =completion-at-point= (thanks to duianto)
 **** HTML
 - Added impatient-mode under ~SPC m i~ (thanks to geo7)
 - Added =counsel-css= as an =ivy= alternative to =helm-css-scss=
@@ -1531,6 +1545,9 @@ Other:
 - Revert setting company min. prefix length to 0 for company-web backend
   (thanks to Dela Anthonio)
 - Added missing prefixes for =web-mode= and =css-mode= (thanks to Uroš Perišić)
+- Fixed ~TAB~ indenting in =web-mode= (thanks to Christopher Eames)
+- Added =lsp= support for =css-mode=, =less-css-mode=, and =scss-mode=
+- Added support for =prettier= formatter in HTML buffers 
 **** Hy
 - Added support for virtual envs (thanks to Danny Freeman)
 - Key bindings:
@@ -1655,6 +1672,7 @@ Other:
     - ~SPC m s r~ to send current region to the REPL and stay in buffer
     - ~SPC m T c~ to toggle compile on save
   - Move REPL live eval toggle to ~SPC m T l~ (thanks to Sylvain Benner)
+  - Updated readme key from: ~SPC m s a~ to: ~SPC m T l~ (thanks to duianto)
   - Added =import-js= support with key bindings:
     - ~SPC m i i~ to mport the module for the variable under the cursor
     - ~SPC m i f~ to import any missing modules and remove any modules that ar
@@ -1688,6 +1706,7 @@ Other:
   (thanks to Matt Kramer)
 - Enable auto indent when paste. Remove =latex-mode= from
   =spacemacs-yank-indent-modes= to disable it (thanks to bet4it)
+- Added support for =company-reftex= (thanks to et2010)
 **** Lua
 - Added support for auto-completion with =company= (thanks to halfcrazy)
 **** Language Server Protocol (LSP)
@@ -1719,11 +1738,14 @@ Other:
 - Fixed save of org table (thanks to Codruț Constantin Gușoi)
 - Fixed missing key bindings for =gfm-mode= (thanks to Codruț Constantin Gușoi)
 - Open Madoko document using markdown mode (thanks to Han Wang)
-- Key bindings (thanks to Swaroop C H):
-  - ~SPC m t i~ to toggle inline images
-  - ~SPC m t l~ to toggle url hiding
-  - ~SPC m t t~ to toggle checkbox
-  - ~SPC m t w~ to toggle wiki links
+- Key bindings:
+  - ~SPC m T i~ to toggle inline images
+  - ~SPC m T l~ to toggle url hiding
+  - ~SPC m T t~ to toggle checkbox
+  - ~SPC m T w~ to toggle wiki links
+    (thanks to Swaroop C H (added keys), AmaiKinono (moved to upper case T))
+  - ~SPC m T m~ for =markdown-toggle-markup-hiding=
+    (thanks to Miciah Masters (added key), AmaiKinono (moved to upper case T))
 - Update markdown insert link, function renamed (thanks to duianto)
 - Made all keybindings available in gfm-mode (thanks to Codruț Constantin Gușoi)
 - Remove org table lighter (thanks to Troy Hinckley)
@@ -1738,9 +1760,27 @@ Other:
   - Rename =markdown-exdent-region= to =markdown-outdent-region=.
   - Command for ~SPC m i I~ folded into ~SPC m i i~.
   - ~SPC m i l~ and ~SPC m i L~ replaced by markdown-insert-link ~SPC m i l~.
-  - Added ~SPC m t m~ for =markdown-toggle-markup-hiding=
   - Rename =markdown-jump= to =markdown-do=
 - Hide MMM mode-line indicator (thanks to duianto)
+- Use =orgtbl-mode= only when the =org= layer is used (thanks to Boris Buliga)
+- Added key bindings (thanks to AmaiKinono):
+  - Element insertion
+    - ~SPC m x B~ insert gfm checkbox
+    - ~SPC m x s~ make region striked through or insert strikethrough
+  - Table manipulation
+    - ~SPC m t p~ move row up
+    - ~SPC m t n~ move row down
+    - ~SPC m t f~ move column right
+    - ~SPC m t b~ move column left
+    - ~SPC m t r~ insert row
+    - ~SPC m t R~ delete row
+    - ~SPC m t c~ insert column
+    - ~SPC m t C~ delete column
+    - ~SPC m t s~ sort lines
+    - ~SPC m t t~ transpose table
+    - ~SPC m t d~ convert region to table
+- Bound major mode leader key and ~M-RET~ to =markdown-insert-list-item= for
+  terminal users (thanks to AmaiKinono)
 **** Major modes
 - Added SPARQL-mode (thanks to Dietrich Daroch)
 - Move =extra-langs= to =major-modes= (thanks to Eivind Fonn)
@@ -1836,6 +1876,7 @@ Other:
 - Packages:
   - Added package =org-journal= (thanks to Nick Anderson)
   - Added package for =org-sticky-header-mode= (thanks to Langston Barret)
+  - Added package =org-jira= (thanks to Kirill A. Korinsky)
 - Key bindings:
   - ~SPC m T i~ to toggle inline images
   - Move clock related key bindings to ~SPC a o C~
@@ -1905,6 +1946,21 @@ Other:
   - Added key binding for org-insert-item (thanks to Emil Petersen)
     - ~SPC m i i~ for =org-insert-item=
   - Added ~SPC m s d~ for =org-cut-subtree= (thanks to clwgg)
+  - Added key bindings for =org-jira= (thanks to Kirill A. Korinsky)
+    - ~SPC a o J p g~ Get projects list
+    - ~SPC a o J i b~ Open the current issue in a WWW browser
+    - ~SPC a o J i g~ Get issues
+    - ~SPC a o J i h~ Get only head of issues
+    - ~SPC a o J i f~ Get only head of issues from filter
+    - ~SPC a o J i u~ Update an issue at point
+    - ~SPC a o J i w~ Progress an issue at point
+    - ~SPC a o J i r~ Refresh an issue at point
+    - ~SPC a o J i c~ Create an issue at point
+    - ~SPC a o J i y~ Copy current issue key
+    - ~SPC a o J s c~ Create a subtask
+    - ~SPC a o J s g~ Get subtasks
+    - ~SPC a o J c u~ Update the comment at point or add a new comment
+    - ~SPC a o J t j~ Convert the TODO item at point to a Jira ticket
 - Key binding changes for archiving (thanks to Ag Ibragimov):
   - Added ~SPC m s a~ to toggle archive tag for subtree
   - Added ~SPC m s A~ to archive subtree (previously ~SPC m s a~)
@@ -1973,6 +2029,8 @@ Other:
 **** PHP
 - Added company-php (thanks to jim and Eivind Fonn)
 - Fixed php-company autocompletion (thanks to Dela Anthonio)
+**** PlantUML
+- Added a missing prefix: =compile=
 **** Platinum
 - Added the =.plum= extension to the platinum modes (thanks to Sylvain Benner)
 - Remove automatic indentation on paste (thanks to Sylvain Benner)
@@ -2011,7 +2069,11 @@ Other:
 - Use =python-mode= for SCons script files (thanks to shanemikel)
 - Added LSP support, which can be used by enabling the =lsp= layer and setting
   the =python= layer's =python-backend= variable to =lsp=
-  (thanks to Yuan Fu and Sylvain Benner)
+  (thanks to Yuan Fu and Sylvain Benner).
+- The LSP backend can use either the =pyls= (default) server or the =mspyls=
+  (Microsoft) implementation, which may be selected by setting the
+  =python-lsp-server= layer variable to =mspyls=
+  (thanks to Cormac Cannon).
 - Added ~SPC m t l~ key binding to re-run the last test command
   (thanks to Benoit Coste).
 - Added support for breakpoints for the =trepan3k= python debugger
@@ -2134,6 +2196,7 @@ Other:
   - Added ~SPC m s l~ to send line to REPL (thanks to Paweł Siudak)
 - Added the =seeing-is-believing= package (thanks to Brandon Conway)
 - Added prefixes for ruby major mode keybindings (thanks to Seong Yong-ju)
+- Added =lsp= and =dap= support (thanks to Billy Kaplan)
 **** Ruby on Rails
 - Changed leader keys to be configured for the =projectile-rails-mode= minor
   mode instead of =ruby-mode= and =enh-ruby-mode= so that the key bindings will
@@ -2143,6 +2206,7 @@ Other:
   - ~SPC m f f b~ to find job
   - ~SPC m f f w~ to find webpack config
   - ~SPC m f c d~ to run rails destroy
+- Added =rubocopfmt= with the key binding ~SPC m = r~
 **** Rust
 - Added missing =counsel-gtags= and =smartparens= package declarations
   (thanks to Kalle Lindqvist)
@@ -2256,6 +2320,11 @@ Other:
 - Added a code formatter for sql-mode (thanks to Seong Yong-ju)
 - Added connection between =org-mode= and =SQL layer= (thanks to Magnus Therning)
 - Added default jump handlers for SQL layer (thanks to Alex Palaistras)
+- Added send line functions/key bindings (thanks to benbotwin):
+  - ~SPC m s l~ Send the current line to the SQLi buffer and move to the next
+    line =insert state=
+  - ~SPC m s L~ Send the current line to the SQLi buffer and move to the next
+    line and switch to it in =insert state=
 **** Spell-checking
 - Added spell checking transient state (thanks to Francesc Elies Henar)
 - Update to flyspell-correct v0.5 (thanks to Boris Buliga)
@@ -2357,6 +2426,7 @@ Other:
 - Fixed jump handling with multiple backends (thanks to Aaron Jensen)
 - Fixed =typescript/jump-to-type-def= for npm modules (thanks to Jam Risser)
 - Added the same setup to tsx files as to ts files (thanks to Trapez Breen)
+- Configured =emmet-mode= for =typescript-tsx-mode=
 **** Vagrant
 - Key bindings:
   - move key bindings prefix to ~SPC a V~ (thanks to Thomas de Beauchêne)
@@ -2428,23 +2498,24 @@ Other:
   Sharif, Artur Juraszek, Benjamin Reynolds, Bernhard Schommer, Billy Wade,
   bmag, Boris Buliga, Boris Wong, Carl Lange, Chase Adams, Christian Bäuerlein,
   Cibin Mathew, CL123123, Codruț Constantin Gușoi, Compro-Prasad, Daniel Hodson,
-  Daniel Le, Daniel Molina, Darkhan, David Florness, David Vo, davidpham87,
-  Deepu Mohan Puthrote, Dela Anthonio, Diego Alvarez, Diego Berrocal, Dietrich
-  Daroch, Dinesh Bhosale, Dominik Schrempf, Doug Beardsley, dubnde, duianto,
-  eldios, EMayej, Eugene Yaremenko, Evan Klitzke, Evan Niessen-Derry, firemiles,
-  Florian Bruhin, Fuqiao Xue, Garrett Johnson, Grant Shangreaux, Henrique Jung,
-  Henry Hirsch, Henry Marshall, hornuda, Ivan Fedorov, Ivan Kryvoruchko, J.
-  Patrick Lanigan, Jaremy Creechley, Jason Axelson, Jesse Cooke, Jethro Shuwen
-  Sun, JI Xiang, Jim Deville, Jody Frankowski, Joe Hillenbrand, John Eismeier,
-  John Wood, Jon Tippens, Jonas Strømsodd, Jonathan Arnett, Jonathan Chen,
-  Jonathan Gillett, Josh Greenwood, Joshua Santos, Justin Stone, Kainalu
-  Hagiwara, Kalle Lindqvist, Kechao Cai, Keith Simmons, Keith Wygant, Kevin Ji,
-  Kristoffer Haugsbakk, lawrsp, Leo Joseph Buchignani III, Luke Worth, Marco
-  Ieni, Marco Zucconelli, Max Beutelspacher, Max Deineko, Max Nordlund,
-  Maximilian Wolff, Miciah Dashiel Butler Masters, mjkramer, Mikhail Yakutovich,
-  Muneeb Shaikh, Nasser Alshammari, Nasser Alshammari, Niko Felger, Nikolai
-  Myllymäki, nikolaiam, Nicolas Forgerit, Oguz Serbetci, Olivier Verdier, Pancho Horrillo, 
-  Paul Milla, Paulo Schneider, Pawan Dubey, Paweł Siudak, Phil Pirozhkov, Philippe
+  Daniel Le, Daniel Molina, Darkhan, David Florness, David Parrish, David Vo,
+  davidpham87, Deepu Mohan Puthrote, Dela Anthonio, Diego Alvarez, Diego
+  Berrocal, Dietrich Daroch, Dinesh Bhosale, Dominik Schrempf, Doug Beardsley,
+  dubnde, duianto, eldios, EMayej, Eugene Yaremenko, Evan Klitzke, Evan
+  Niessen-Derry, firemiles, Florian Bruhin, Fuqiao Xue, Garrett Johnson, Grant
+  Shangreaux, Henrique Jung, Henry Hirsch, Henry Marshall, hornuda, Ivan
+  Fedorov, Ivan Kryvoruchko, J. Patrick Lanigan, Jaremy Creechley, Jason
+  Axelson, Jesse Cooke, Jethro Shuwen Sun, JI Xiang, Jim Deville, Jody
+  Frankowski, Joe Hillenbrand, John Eismeier, John Wood, Jon Tippens, Jonas
+  Strømsodd, Jonathan Arnett, Jonathan Chen, Jonathan Gillett, Josh Greenwood,
+  Joshua Santos, Justin Stone, Kainalu Hagiwara, Kalle Lindqvist, Kechao Cai,
+  Keith Simmons, Keith Wygant, Kevin Ji, Kristoffer Haugsbakk, lawrsp, Leo
+  Joseph Buchignani III, Luke Winship, Luke Worth, Marco Ieni, Marco Zucconelli,
+  Max Beutelspacher, Max Deineko, Max Nordlund, Maximilian Wolff, Miciah Dashiel
+  Butler Masters, mjkramer, Mikhail Yakutovich, Muneeb Shaikh, Nasser
+  Alshammari, Nasser Alshammari, Niko Felger, Nikolai Myllymäki, nikolaiam,
+  Nicolas Forgerit, Oguz Serbetci, Olivier Verdier, Pancho Horrillo, Paul Milla,
+  Paulo Schneider, Pawan Dubey, Paweł Siudak, Phil Pirozhkov, Philippe
   Bourdages, Piotr Grzesik, Rafi Khan, Rand01ph, rakyi, Raymond Wanyoike,
   Reverend Homer, Robby O'Connor, Rhommel Lamas, Sam Pablo Kuper, Saulius
   Menkevičius, sduthil, Sergio Ugalde, Shane Kilkelly, Sid Kapur, Somelauw,
