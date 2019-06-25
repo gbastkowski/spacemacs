@@ -311,6 +311,7 @@ sane way, here is the complete list of changed key bindings
 - perl5 (thanks to Troy Hinckley, Jinseop Kim and Michael Rohleder)
 - perl6 (thanks to Bahtiar Gadimov and yuhan0)
 - prolog (thanks to Newres Al Haider)
+- reasonml (thanks to fredyr and Dave Aitken)
 - protobuf (thanks to Amol Mandhane)
 - restructuredtext (thanks to Wei-Wei Guo and Kalle Lindqvist)
 - semantic-web (thanks to Andreas Textor)
@@ -886,6 +887,12 @@ Other:
     - ~f~ for toggle fullscreen
     (thanks to Ag Ibragimov)
   - Updated Scrolling Transient State (thanks to duianto)
+  - Removed new layout confirmation question (thanks to duianto)
+  - Revealed already bound Helm Transient State navigation keys:
+    - ~g~ go to first candidate
+    - ~G~ go to last candidate
+    (thanks to duianto)
+  - Added support for visual line numbers (thanks to jcaw)
 - Fixed:
   - Fixed ~h~ key binding in compilation and grep buffers
     (thanks to Sylvain Benner)
@@ -1009,6 +1016,9 @@ Other:
   - Fixed copied dir/path not shown in minibuffer when =select-enable-clipboard=
     is =nil= (thanks to duianto)
 *** Layer changes and fixes
+**** Agda
+- Fixes
+  - Fix auto bind breaking after Agda 2.6.0 api changes
 **** Alda
 - Key bindings:
   - ~SPC m r~ Play region (selected text)
@@ -1587,7 +1597,7 @@ Other:
 - Added missing prefixes for =web-mode= and =css-mode= (thanks to Uroš Perišić)
 - Fixed ~TAB~ indenting in =web-mode= (thanks to Christopher Eames)
 - Added =lsp= support for =css-mode=, =less-css-mode=, and =scss-mode=
-- Added support for =prettier= formatter in HTML buffers 
+- Added support for =prettier= formatter in HTML buffers
 **** Hy
 - Added support for virtual envs (thanks to Danny Freeman)
 - Key bindings:
@@ -2065,10 +2075,18 @@ Other:
   - Added ~M-s-h~ to hide other windows (thanks to Bas Veeling)
 - Replace pbcopy by osx-clipboard (thanks to Minh Nguyen-Hue)
 - Fixed key binding issue when Emacs is launched in daemon mode.
+- Added the default value =H-= (hyper) to =kbd-mac-command= if it's neither:
+  =hyper=, =super= or =alt= (thanks to Binbin Ye)
+- Added a layer variable =osx-swap-option-and-command= defaults to =nil=
+  (thanks to Binbin Ye)
 **** Pandoc
 - Fixed =spacemacs/run-pandoc= not to reset =pandoc--local-settings=
   (thanks to martian-f)
 - Added declaration for the ~SPC P~ prefix (thanks to Codruț Constantin Gușoi)
+**** Perl5
+- Fixed =spacemacs/perltidy-format-buffer= and
+  =spacemacs/perltidy-format-function= to move the point and window to their
+  original locations.
 **** PHP
 - Added company-php (thanks to jim and Eivind Fonn)
 - Fixed php-company autocompletion (thanks to Dela Anthonio)
@@ -2207,6 +2225,19 @@ Other:
   - Use JSX header without breaking React (thanks to Jam Risser)
   - Fixed React imports when using web beautify. (thanks to Ismael)
   - Made layer depends on node and tern layers (thanks to Sylvain Benner)
+**** ReasonML
+- Key bindings:
+  - ~SPC m g g~ Jump to definition
+  - ~SPC m g G~ Jump to definition (other window)
+  - ~SPC m g b~ Jump back
+  - ~SPC m h t~ Show type
+  - ~SPC m h h~ Show docs
+  - ~SPC m r d~ Merlin destruct
+  - ~SPC m = =~ Refmt
+  - ~SPC m t r~ Toggle auto-refmt on save
+  - ~SPC m = m r~ Refmt: convert ml syntax to re syntax
+  - ~SPC m = r m~ Refmt: convert re syntax to ml syntax
+    (thanks to Fredrik Dyrkell and Dave Aitken)
 **** Ruby
 - Added support for =org-babel= (thanks to Muneeb Shaikh)
 - Highlight debugger keywords (thanks to Alexander Berezovsky and Eivind Fonn)
@@ -2322,6 +2353,7 @@ Other:
 - Added =eshell= =Ivy= completion bindings (thanks to bb2020):
   - ~M-l~ =spacemacs/ivy-eshell-history=
   - ~TAB~ =spacemacs/pcomplete-std-complete=
+- Enabled mouse based pasting into term shells (thanks to Sheng Yang)
 **** Shell Scripts
 - Added new company-shell environment variable backend
   (thanks to Alexander-Miller)
@@ -2447,6 +2479,8 @@ Other:
 - Add missing ~SPC p t~ to =readme.org= (thanks to oo6)
 - Remapped =winum-select-window-0-or-10= to =treemacs-select-window= so that
   ~C-x w 0~, ~SPC 0~ and ~M-0~ call the same command (thanks to duianto, Miciah)
+- Loaded =treemacs-projectile= key binding ~C-c C-p p~ with Treemacs
+  (thanks to duianto)
 **** Typescript
 - Call tsfmt with extension of current buffer for TSX formatting
   (thanks to Victor Andrée)
