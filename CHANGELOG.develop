@@ -933,6 +933,8 @@ Other:
                spacemacs/window-split-triple-columns
                spacemacs/window-split-grid)
     (thanks to Thanh Vuong)
+  - Added a link to =spacemacs|create-align-repeat-x= in the docstring for
+     =align-repeat-= commands (thanks to Troy Pracy)
 - Fixed:
   - Fixed ~h~ key binding in compilation and grep buffers
     (thanks to Sylvain Benner)
@@ -1062,6 +1064,7 @@ Other:
   - Fixed =search-engine= layer customization issue (thanks to Haisheng Wu)
   - Replaced deprecated =avy--generic-jump= with =avy-jump=
     (thanks to Dominik Schrempf)
+  - Switch recreated messages buffer to =evil-normal-state= (thanks to duianto)
 *** Layer changes and fixes
 **** Agda
 - Fixes
@@ -1143,7 +1146,10 @@ Other:
     (thanks to Fangrui Song and Codruț Constantin Gușoi)
   - Added =org-babel= support (thanks to Michael Rohleder)
   - Added debugger integration via =dap= layer
-  - Added detecting ".ccls" for ccls powered projects.
+  - Added detecting ".ccls" for ccls powered projects
+  - Fixed the =c-c++-default-mode-for-headers= should not affect the default
+    behavior that opening a .h file will turn C or C++ mode depending on
+    language used in Emacs > 26.1+ (thanks to Lin Sun)
 - Key bindings:
   - ~SPC m = =~ clang-format current region or buffer (thanks to Dela Anthonio)
   - ~SPC m = f~ clang-format current function (thanks to Dela Anthonio)
@@ -1484,6 +1490,8 @@ Other:
 **** GitHub
 - Packages:
   - Added new packages =forge= (thanks to Miciah Dashiel Butler Masters)
+  - Do not install =forge= on Windows by default, see =README.org= of the layer
+    (thanks to Sylvain Benner)
   - Remove package =github-browse-file= which has been replaced by
    =browse-at-remote= in =version-control= layer
 - Key bindings:
@@ -1575,6 +1583,7 @@ Other:
   (thanks to Tim Heckman)
 - Refactored two variables =go-use-gometalinter= and =go-use-golangci-lint= to
   one =go-linter= (thanks to Robert Zaremba)
+- Added Testify support (thanks to Mathieu Post)
 **** Graphviz
 - Use graphviz package from melpa (thanks to Matthew Boston)
 **** Groovy
@@ -2586,6 +2595,9 @@ Other:
 - Remove themes that were deleted from Melpa (thanks to Henrique Jung)
 - Added =eziam-theme= and =kaolin-themes= (thanks to Sylvain Benner)
 - Added =doom-themes= (thanks to Codruț Constantin Gușoi)
+- Created and added =ewal-spacemacs-themes= (thanks to Uroš Perišić)
+- Added =chocolate-theme= (thanks to Henrique Jung)
+- Updated =doom-themes= list to reflect upstream (thanks to Dominic Pearson)
 **** Tmux
 - Prevent =tmux-command= at GUI mode (thanks to Isaac Zeng)
 - Fixed regression in tmux by setting keybindings using =use-package=
