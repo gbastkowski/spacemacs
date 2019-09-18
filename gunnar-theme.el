@@ -45,6 +45,6 @@
  '(match ((t (:weight bold :foreground "#2e3436" :background "#e9b96e"))))
  '(next-error ((t (:inherit (region)))))
  '(query-replace ((t (:inherit (isearch)))))
- '(default ((t (:family "PragmataPro Mono" :foundry "nil" :width normal :height 130 :weight normal :slant normal :underline nil :overline nil :strike-through nil :box nil :inverse-video nil :foreground "#eeeeec" :background "gray20" :stipple nil :inherit nil)))))
+ '(default ((t (:family "PragmataPro Mono" :foundry "nil" :width normal :height 130 :weight normal :slant normal :underline nil :overline nil :strike-through nil :box nil :inverse-video nil :foreground "#ddddff" :background "#282828" :stipple nil :inherit nil)))))
 
 (provide-theme 'gunnar)
