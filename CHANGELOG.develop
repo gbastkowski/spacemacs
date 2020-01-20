@@ -933,6 +933,8 @@ Other:
   - New ~SPC x t e~ to transpose sexps (thanks to Guido Kraemer)
   - Added evil key bindings for visualizer and window mode of =undo-tree=
     (thanks to Rich Alesi)
+  - New key bindings ~SPC x l r~ and ~SPC x w r~ to randomize lines and words
+    in region (thanks to Sylvain Benner)
   - Improved =which-key= replacement regular expressions (thanks to duianto)
   - Added ~SPC o~ which-key prefix name: =user bindings= (thanks to duianto)
   - Added =symbol-overlay= key bindings (thanks to kenkangxgwe):
@@ -1499,6 +1501,8 @@ Other:
 - Improvements:
   - Added eval-thing-at-point functions to Common Lisp Layer
     (thanks to Lukas Woell)
+  - Make rainbow-identifiers not colorize special operators and macros, so they
+    always visually stand out. (thanks to Andriy Kmit)
 - New packages:
   - Added =slime-asdf= to =slime-contribs= to enabled some slime commands like
     =,load-system= (thanks to Daniel Schoepe)
@@ -1667,6 +1671,8 @@ Other:
   (thanks to Codruț Constantin Gușoi, Sylvain Benner)
 - Activate nameless only in GUI (thanks to Sylvain Benner)
 - Added =flycheck-package= for package metadata linting (thanks to Uroš Perišić)
+- Make rainbow-identifiers not colorize special operators and macros, so they
+  always visually stand out. (thanks to Andriy Kmit)
 **** Emoji
 - Added support for Emoji fonts on macOS and Linux (thanks to CodeFalling)
 - Setup =emojify= cache directory (thanks to Boris Buliga)
@@ -1903,6 +1909,11 @@ Other:
   (thanks to cjay, CthulhuDen and Magnus Therning)
 - Included =attrap= when =dante= is used (thanks to Pepe Iborra)
 - Added keybinding ~C-c C-z~ for =haskell-interactive-switch= (thanks to ft)
+- Added keybindings to the GHCI REPL:
+  - ~C-j~ switch to next history item
+  - ~C-k~ switch to previous history item
+  - ~C-l~ clear the REPL
+  (thanks to Joscha)
 **** Helm
 - New packages:
   - =helm-ls-git= (thanks to duianto)
@@ -1946,6 +1957,9 @@ Other:
   - Removed ~SPC s w w~ key binding for =helm-wikipedia-suggest=, which was
     removed upstream.
   - ~SPC g f f~ for =helm-ls-git-ls= (thanks to duianto)
+  - Add ~C-d~ to create a project perspective and open a project root dired
+    buffer, from the ~SPC p l~ persp switch project prompt
+    (thanks to Magnus Therning)
 - Fixes:
   - Fixed signature of =spacemacs//display-helm-window= (thanks to Jack Kamm)
   - Fixed initialization by calling =helm-mode= when Helm is initialized=
@@ -1969,6 +1983,7 @@ Other:
     Helm-ag (thanks to duianto and Miciah Masters)
   - Fixed searching in a project with ~C-s~ from ~SPC p p~ (thanks to duianto)
   - Fixed ~C-c C-e~ =helm-find-files-edit= action (thanks to duianto)
+  - Added =spacemacs/helm-dir-do-grep= to fix #13167 (thanks to Richard Kim)
 **** HTML
 - Added =impatient-mode= under ~SPC m i~ (thanks to geo7)
 - Added =counsel-css= as an =ivy= alternative to =helm-css-scss=
@@ -2038,6 +2053,9 @@ Other:
     - ~f3~ =spacemacs//counsel-save-in-buffer=
     - ~C-c C-e~ =spacemacs//counsel-edit=
     (thanks to madand)
+  - Add ~d~ to create a project perspective and open a project root dired
+    buffer, from the ~SPC p l~ persp switch project prompt
+    (thanks to Magnus Therning and Muneeb Shaikh)
 - Limit =ripgrep= results to 150 columns (thanks to Aaron Jensen)
 - Use new API to register additional transient state bindings
   (thanks to Andriy Kmit')
@@ -2210,6 +2228,8 @@ Other:
 - Added =after-config= hooks for lazy-loaded packages (thanks to CharlesHD)
 - Added undo-tree visualizer mapping (thanks to CharlesHD)
 - Fixed key remapping after =cl= package deprecation (thanks to Damien Picard)
+- Fixed =bepo= layout, commented out broken evil-window :common bindings
+  (thanks to CharlesHD)
 **** Kivy
 - Added the =kivy= package (thanks to Nasser Alshammari and Ryota Kayanuma)
 **** LaTeX
@@ -2227,6 +2247,7 @@ Other:
     (thanks to Olivier Verdier)
 - Fixed README to say auto-fill on by default. (thanks to Max Willsey)
 - Added ConTeXt mode to the key bindings (thanks to ft)
+- Fixed ~SPC m ;~ binding (thanks to Tianshu Wang)
 **** Lua
 - Added support for auto-completion with =company= (thanks to halfcrazy)
 - Added support for =LSP= (EmmyLua-LS-all) (thanks to Lin.Sun)
@@ -3073,6 +3094,7 @@ Other:
 - Deprecated =treemacs-use-collapsed-directories=. Flattening directories should
   be controlled by directly setting =treemacs-collapse-dirs=.
 - Fixed "width (un)locked" message appearing when treemacs is loaded.
+- Add =persp-mode= integration (thanks to Seong Yong-ju)
 **** Typescript
 - Call tsfmt with extension of current buffer for TSX formatting
   (thanks to Victor Andrée)
@@ -3167,6 +3189,7 @@ Other:
   - ~SPC x P~ paste item from history (cliphist must be enabled)
   - ~SPC x R~ rectangle paste item from history (cliphist must be enabled)
   - ~SPC x s~ select item from history (cliphist must be enabled)
+- Added custom command config variable (thanks to lipengcheng)
 **** Yaml
 - Improvements:
   - Updated docs to include the =yaml-yamllint= flycheck checker
@@ -3227,12 +3250,13 @@ Other:
   Vermeir, Tianyi Wang, Tim Stewart, timor, TinySong, Titov Andrey, Thomas de
   Beauchêne, Tomasz Cichocinski, Trey Merkley, tzhao11, Vincent Taing, Ullas
   Holla, Vlad Bokov, Vladimir Kochnev, wenpin, Wieland Hoffmann, Witoslaw
-  Koczewski, Xiang Ji, Yi Liu, Zane Sterling, zer09, Zhige Xin)
+  Koczewski, Xiang Ji, Yi Liu, Zach Latta, Zane Sterling, zer09, Zhige Xin)
 **** Documentation and website
   - DOCUMENTATION.org:
     - Fixed the example for how to change the separator style
   - README.md:
     - Fixed macOS documentation to install fonts (thanks to Sergio Morales)
+    - Updated Windows section, suggest official Emacs (thanks to ghost-420)
 *** Release notes summarized
   Thanks to: Abhishek(Compro) Prasad, Deepak Khidia, Enze Chi, Grant Shangreaux,
   Igor Almeida, Jiahao Jiang, Miciah Dashiel Butler Masters, Songpeng Zu, Ward
