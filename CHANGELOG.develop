@@ -364,6 +364,8 @@ sane way, here is the complete list of changed key bindings
 - ietf (thanks to Christian Hopps and Robby O'Connor)
 - multiple-cursors (thanks to Codruț Constantin Gușoi and Thomas de Beauchêne)
 - parinfer (thanks to Tianshu Shi)
+**** Music
+- pianobar (thanks to Leo Littlebook)
 **** Readers
 - epub (thanks to Jeremy Dormitzer and André Peric Tavares)
 **** Spacemacs
@@ -436,6 +438,7 @@ sane way, here is the complete list of changed key bindings
     will obfuscate the current buffer acting like a screen saver.
     (thanks to Eugene Yaremenko and Sylvain Benner)
   - New variable =dotspacemacs-undecorated-at-startup= (thanks to bb2020)
+  - New variable =dotspacemacs-startup-buffer-show-version= (thanks to Zach Pearson)
 - Removed Variables:
   - Removed unused variable =dotspacemacs-verbose-loading= from
     =.spacemacs.template= (thanks to Ying Qu)
@@ -1428,6 +1431,8 @@ Other:
   - Autoscroll to end of REPL when sending buffer content
     (thanks to Vitaly Banchenko)
   - Added ability to use multiple linters together (thanks to didibus)
+  - Added `spacemacs/cider-eval-sexp-end-of-line` to match lisp functionality
+    (thanks to John Stevenson)
 - Key bindings:
   - ~SPC m e ;~ to eval sexp and show result as comment
     (thanks to John Stevenson)
@@ -1510,6 +1515,9 @@ Other:
   - added evaluation keybinding - evaluate up to point
     ~SPC m e V~ 'cider-eval-sexp-up-to-point
     (thanks to John Stevenson)
+  - added evaluation keybinding - go to end of line and evaluate sexp
+    ~SPC m e $~ 'spacemacs/cider-eval-sexp-end-of-line
+    ~SPC m e l~ 'spacemacs/cider-eval-sexp-end-of-line
 - Fixes:
   - Removed =cider.nrepl/cider-middleware= in lein quick start setting
   - Fixed =cider-inspector-prev-page= binding, also add ~p~ as another key
@@ -2087,6 +2095,7 @@ Other:
 **** IPython Notebook
 - Added support for auto-completion with =company= (thanks to tutysara)
 - Added =ob-ipython= (thanks to Alejandro Catalina)
+- DRY and tidiness update (thanks to dickmao)
 - Key bindings:
   - ~SPC a i l~ to login (thanks to Ben Mabey)
   - ~SPC m s~ to split cell at point (thanks to Jaakko Luttinen)
@@ -2281,6 +2290,8 @@ Other:
   - Fixed =julia-mode-local-vars-hook= (thanks to Guido Kraemer)
   - Limited =evil-surround-pairs-alist= redefinitions to julia mode
     (thanks to duianto)
+  - Remove warning about LanguageServer.jl not working in 1.0
+    (thanks to Daniel Molina)
 **** Keyboard layout
 - Added support for Colemak layout (thanks to Daniel Mijares, Lyall Cooper and
   Eivind Fonn)
@@ -2434,6 +2445,7 @@ Other:
 - Enabled scrolling in =mu4e= (thanks to Simon Altschuler)
 - Kill mu4e layout on app exit (thanks to Ag Ibragimov)
 - Restore ~gu~ binding for ~mu4e-view-go-to-url~ (thanks to Dominik Schrempf)
+- Updated assigned purpose names
 **** Multiple Cursors
 - Disabled Spacemacs paste transient state when pasting to avoid pasting issue
   when there are more than one cursor (thanks to braham-snyder)
@@ -2938,6 +2950,13 @@ Other:
   - Added ~SPC m c t~ to run the current test with Cargo, and fix documentation
     for ~SPC m c f~ to format project files (thanks to Luke Alexander Stein)
   - Added ~SPC m c v~ to run "cargo check" command (thanks to Victor Polevoy)
+  - Added key bindings for =cargo-edit= plugin (thanks to Lucius Hu)
+    - ~SPC m c a~ for =cargo add=
+    - ~SPC m c r~ for =cargo rm=
+    - ~SPC m c U~ for =cargo upgrade=
+  - Added ~SPC m c A~ for =cargo audit= plugin (thanks to Lucius Hu)
+  - Modified ~SPC m c X~ for =cargo run --bin= command, instead of =cargo run --example= (thanks to Lucius Hu)
+  - Added ~SPC m c E~ for =cargo run --example= (thanks to Lucius Hu)
 - Added rust lsp completion with company and bindings (thanks to Justin)
 - Added debugger integration via =dap= layer
 - Fixed rust dap integration (thanks to Tommi Komulainen)
@@ -2945,6 +2964,8 @@ Other:
 - Fixed ~rust-quick-run~ command (thanks to Grant Shangreaux)
 - Removed compilation buffer string match on =rust-quick-run=
   (thanks to Grant Shangreaux)
+- Added/Updated instructions on external dependencies, =cargo-edit=, =cargo-audit=,
+  =rustfmt=, and =clippy= (thanks to Lucius Hu)
 **** Sailfish-Developer
 - Key bindings:
   - Added =sailfish-scratchbox= key bindings (thanks to Victor Polevoy):
