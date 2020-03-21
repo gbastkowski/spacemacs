@@ -98,7 +98,7 @@
         "v" #'notmuch-hello-versions
         "z" #'notmuch-tree
         "M-=" #'notmuch-refresh-all-buffers)
-      ;; Make notmuch message mode exitable with q
+      ;; Make notmuch message mode closable via q
       (evil-define-key 'normal notmuch-message-mode-map
         "q" #'message-kill-buffer)
       (evilified-state-evilify-map notmuch-show-mode-map
