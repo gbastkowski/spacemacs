@@ -312,7 +312,8 @@ sane way, here is the complete list of changed key bindings
 **** Completion
 - templates (thanks to YasuharuIida and Eivind Fonn)
 **** Emacs
-- helpful (thanks to Johnson Denen)
+- helpful (thanks to Johnson Denen, Andriy Kmit)
+- verb (thanks to Federico Tedin)
 **** Email
 - notmuch (thanks to Francesc Elies Henar, Leonard Lausen, Willian Casarin,
   Kalle Lindqvist)
@@ -475,6 +476,9 @@ Other:
   - Removed obsolete =:powerline-scale= property from
     =dotspacemacs-default-font= variable
     (thanks to Muneeb Shaikh and Sylvain Benner)
+  - Modified =dotspacemacs-major-mode-leader-key= so that =M-RET= key works in
+    org-mode as well as in terminal and GUI modes. =C-M-m= still works in
+    terminal mode, but no longer in GUI mode. (emacs18)
 *** Core changes
 - Improvements:
   - Display time spent in =user-config= in home buffer (thanks to Sylvain Benner)
@@ -636,6 +640,8 @@ Other:
   - Ignore nils in dotspacemacs-configuration-layers (thanks to Ag)
   - Fixed redundant package version checking during update
     (thanks to aaronjensen)
+  - Fixed unexpected behavior in =spacemacs/open-junk-file= (thanks to Matt
+    Kramer)
 - Other:
   - New function =configuration-layer/message= to display message in
     =*Messages*= buffer (thanks to Sylvain Benner)
@@ -3361,7 +3367,7 @@ Other:
   Creechley, Jason Axelson, Jesse Cooke, Jethro Shuwen Sun, JI Xiang, Jim
   Deville, Jody Frankowski, Joe Hillenbrand, John Eismeier, John Wood, Jon
   Tippens, Jonas Strømsodd, Jonathan Arnett, Jonathan Chen, Jonathan Gillett,
-  Josh Greenwood, Joshua Santos, Justin Stone, Kainalu Hagiwara, Kalle
+  Jonta, Josh Greenwood, Joshua Santos, Justin Stone, Kainalu Hagiwara, Kalle
   Lindqvist, Kechao Cai, Keith Simmons, Keith Wygant, Kenji Miyazaki ,Kevin Ji,
   Kristoffer Haugsbakk, lawrsp, Leo Joseph Buchignani III, liuchong, Lucius Hu,
   Luke Winship, Luke Worth, Marco Ieni, Marco Zucconelli, Max Beutelspacher, Max
