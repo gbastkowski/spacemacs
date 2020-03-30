@@ -223,7 +223,7 @@ For example:
     (org :variables
         org-enable-org-journal-support t
         org-journal-dir "~/org/journal/"
-        erg-journal-file-format "%Y-%m-%d"
+        org-journal-file-format "%Y-%m-%d"
         org-journal-date-prefix "#+TITLE: "
         org-journal-date-format "%A, %B %d %Y"
         org-journal-time-prefix "* "
@@ -642,6 +642,7 @@ The evilified org agenda supports the following bindings:
 | ~SPC m d s~          | org-agenda-schedule               |
 | ~SPC m i e~          | org-agenda-set-effort             |
 | ~SPC m i p~          | org-agenda-set-property           |
+| ~SPC m i P~          | org-agenda-priority               |
 | ~SPC m i t~          | org-agenda-set-tags               |
 | ~SPC m s r~          | org-agenda-refile                 |
 | ~M-j~                | next item                         |
