@@ -672,6 +672,7 @@ Other:
     (thanks to Vitor Finotti and Robby O'Connor)
   - Added reference handler as per jump handler (thanks to Fangrui Song)
   - Added =spacemacs/iwb-region-or-buffer= (thanks to bb2020)
+  - Enabled eager spacebind bindings by default
 *** Distribution changes
 - Refactored =spacemacs-bootstrap=, =spacemacs-ui=, and =spacemacs-ui-visual=
   layers:
@@ -2329,6 +2330,7 @@ Other:
     (thanks to duianto)
   - Remove warning about LanguageServer.jl not working in 1.0
     (thanks to Daniel Molina)
+  - Fixed inconsistencies in backend configuration (thanks to Matt Kramer)
 **** Keyboard layout
 - Added support for Colemak layout (thanks to Daniel Mijares, Lyall Cooper and
   Eivind Fonn)
@@ -2454,6 +2456,7 @@ Other:
 - Bound major mode leader key and ~M-RET~ to =markdown-insert-list-item= for
   terminal users (thanks to AmaiKinono)
 - Made =*lsp-help*= buffer shown in a popup window using popwin
+- Add support for mdx files via markdown-mode (thanks to robbyoconnor)
 **** Major modes
 - Added SPARQL-mode (thanks to Dietrich Daroch)
 - Added android logcat (thanks to jiejingzhang)
@@ -3248,6 +3251,9 @@ Other:
 - Deleted default values to track upstream behavior
   (thanks to Michael Peyton Jones)
 - Removed obsolete options (thanks to Michael Peyton Jones)
+- Finished =treemacs-persp= integration and made it opt-in. Using the layer
+  variable: =treemacs-use-scope-type= with the possible values:
+  ='Frames= (default) or ='Perspectives= (thanks to Alexander Miller)
 **** Typescript
 - Call tsfmt with extension of current buffer for TSX formatting
   (thanks to Victor Andrée)
