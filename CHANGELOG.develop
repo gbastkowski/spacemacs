@@ -313,6 +313,7 @@ sane way, here is the complete list of changed key bindings
 ***** Vagrant
 - Key bindings:
   - Vagrant key bindings prefix is now ~SPC a V~.
+  - Actually use ~SPC a t v t~ for =vagrant-tramp-term=
 ***** YAML
 - Added LSP support (thanks to Seong Yong-ju)
 ***** ycmd
@@ -664,6 +665,8 @@ Other:
   - Avoid unnecessary packages installation of tern layer
   - Fixed terminal mode line indicator overlapping (thanks to duianto)
   - Fixed broken --timed-requires and --adv-timers under Emacs 27 and above (thanks to Ying Qu)
+  - Removed nils from =dotspacemacs-configuration-layers= when running tests
+    (thanks to Ag Ibragimov)
 - Other:
   - New function =configuration-layer/message= to display message in
     =*Messages*= buffer (thanks to Sylvain Benner)
@@ -1166,6 +1169,12 @@ Other:
   - Improved google-translate for set source language to "auto" and
     select target language interactively (thanks to Lin Sun)
   - Allowed users to specify layout local variables (thanks to CeleritasCelery, fauxsoup)
+  - Refactor +layers/+tools packages to use prefix ~at~
+    migrating most key bindings to lower cases and
+    expanding room for further aliases (thanks to John Stevenson)
+  - Refactor layers/+chat|email|fun|readers|web-services packages to use
+    relative key binding, migrating most key bindings to lower cases and
+    expanding room for further aliases (thanks to John Stevenson)
 - Fixed:
   - Fixed ~h~ key binding in compilation and grep buffers
     (thanks to Sylvain Benner)
@@ -1314,6 +1323,7 @@ Other:
   - Fixed ~SPC h f~ =helm-spacemacs-help-faq= (thanks to duianto)
   - Fixed =cl= package deprecated =letf= (thanks to duianto)
   - Fixed origami bindings in normal mode (thanks to Tomasz Kowal)
+  - Fixed mode-line evil state foreground color (thanks to duianto)
 *** Layer changes and fixes
 **** Agda
 - Fixes
@@ -1582,6 +1592,11 @@ Other:
     (thanks to John Stevenson)
   - Changed evaluation keybinding - cider-clojure-interaction-mode
     ~SPC m e p l~ 'cider-eval-print-last-sexp
+  - Add refactor namespace key bindings
+    ~ran~ 'clojure-insert-ns-form
+    ~raN~ 'clojure-insert-ns-form-at-point
+    ~rsn~ 'clojure-sort-ns
+    (thanks to John Stevenson)
 - Fixes:
   - Removed =cider.nrepl/cider-middleware= in lein quick start setting
   - Fixed =cider-inspector-prev-page= binding, also add ~p~ as another key
@@ -1951,6 +1966,8 @@ Other:
     by upstream changes (thanks to Miciah Dashiel Butler Masters)
   - Unfolded org headings to a target line when a .org file is opened from a
     Magit diff or blame buffer (thanks to duianto and Miciah Masters)
+  - Allowed multichar major mode leader key for exiting magit commit edits
+    (thanks to tuh8888)
 **** Gnus
 - Key bindings:
   - Added ~g r~ for =gnus-group-get-new-news= (thanks to Matthew Leach)
@@ -2027,6 +2044,7 @@ Other:
     environment variables (thanks to Joshua Santos)
   - Fixed =go-run-test-current-function= for vanilla tests and gocheck suite
     tests (thanks to Mathieu Post)
+  - Fixed search for current test function to run (thanks to joelpet)
   - Disabled =go-eldoc-setup= for LSP backend (thanks to Seong Yong-ju)
 **** Graphviz
 - Use graphviz package from melpa (thanks to Matthew Boston)
@@ -3179,6 +3197,7 @@ Other:
   - variable: =layouts-enable-local-variables=
   - function: =spacemacs/make-variable-layout-local=
   (thanks to JAremko and duianto)
+- Better keybindings for ~ESC~ and ~RET~ in vterm =evil-normal-state= (thanks to kenkangxgwe)
 **** Shell Scripts
 - Added new company-shell environment variable backend
   (thanks to Alexander-Miller)
@@ -3271,6 +3290,8 @@ Other:
 - Use correct error list faces when defining error levels with custom bitmaps
   (thanks to Alexander Miller)
 - Fixed =goto-flycheck-error-list= (thanks to Thanh Vuong)
+- Added lsp support for sqls
+  - Added layer variable =sql-lsp-sqls-workspace-config-path= to setting workspace configuration
 **** Swift
 - Update Swift REPL key bindings (thanks to Elliot Bulmer)
 **** Systemd
@@ -3280,6 +3301,7 @@ Other:
 - Added opt-in layer variable =terraform-fmt-on-save= to format buffers on save
   with =terraform fmt= (thanks to Harry Hull)
 - Added support for =terraform-company= (thanks to Sylvain Benner)
+- Added LSP support for terraform-lsp
 **** Templates
 - Fixed issue with templates layer ignoring =templates-private-directory=
   (thanks to Seong Yong-ju)
