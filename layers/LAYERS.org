@@ -771,6 +771,7 @@ Features:
   - archive-mode
   - bookmark
   - conf-mode
+  - cus-edit
   - dired
   - dired-x
   - display-line-numbers (only in Emacs 26.x and newer)
@@ -937,7 +938,7 @@ This layer tweaks =org-mode= to integrate nicely into Spacemacs.
 Features:
 - Configuration for =flyspell= to check =org-buffers= for typos.
 - Support for automatically generated Table-Of-Contents via =toc-org=.
-- Support for custom bullet markers via =org-bullets=.
+- Support for custom bullet markers via =org-superstar=.
 - Support for a special view mode for org documents via =space-doc=.
 
 ** Spacemacs-project
@@ -2786,6 +2787,7 @@ Features:
 - Symbol documentation in a child frame (=lsp-ui-doc=)
 - Navigation using imenu
 - Consistent core key bindings in LSP modes
+- Code folding (lsp-origami)
 
 ** Meson
 [[file:+tools/meson/README.org][+tools/meson/README.org]]
