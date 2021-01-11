@@ -651,9 +651,12 @@ The evilified org agenda supports the following bindings:
 |----------------------+-----------------------------------|
 | ~M-SPC~ or ~s-M-SPC~ | org-agenda transient state        |
 | ~SPC m a~            | org-agenda                        |
+| ~SPC m ,~            | org-agenda-ctrl-c-ctrl-c          |
+| ~SPC m c~            | org-agenda-capture                |
 | ~SPC m C c~          | org-agenda-clock-cancel           |
 | ~SPC m C i~          | org-agenda-clock-in               |
 | ~SPC m C o~          | org-agenda-clock-out              |
+| ~SPC m C j~          | org-agenda-clock-goto             |
 | ~SPC m C p~          | org-pomodoro (if package is used) |
 | ~SPC m d d~          | org-agenda-deadline               |
 | ~SPC m d s~          | org-agenda-schedule               |
@@ -673,10 +676,10 @@ The evilified org agenda supports the following bindings:
 | ~M-RET~              | org-agenda-show-and-scroll-up     |
 
 *** Org agenda transient state
-Use ~M-SPC~ or ~s-M-SPC~ in an org agenda buffer to activate its transient state.
-The transient state aims to list the most useful org agenda commands and
-visually organize them by category. The commands associated with each binding
-are listed bellow.
+Use ~SPC m .~, ~M-SPC~ or ~s-M-SPC~ in an org agenda buffer to activate its
+transient state. The transient state aims to list the most useful org agenda
+commands and visually organize them by category. The commands associated with
+each binding are listed bellow.
 
 | Key binding | Description         | Command                           |
 |-------------+---------------------+-----------------------------------|
@@ -781,6 +784,7 @@ org-present must be activated explicitly by typing: ~SPC SPC org-present~
 
 | Key binding         | Description                                     |
 |---------------------+-------------------------------------------------|
+| ~SPC a o j f~       | Visit journal file                              |
 | ~SPC a o j j~       | New journal entry                               |
 | ~SPC u SPC a o j j~ | Open today's journal without adding a new entry |
 | ~SPC a o j s~       | Search journal entries                          |

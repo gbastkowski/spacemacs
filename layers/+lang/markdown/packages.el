@@ -20,6 +20,7 @@
         mmm-mode
         org
         smartparens
+        valign
         (vmd-mode :toggle (eq 'vmd markdown-live-preview-engine))
         ))
 
@@ -46,6 +47,9 @@
       (spacemacs/set-leader-keys-for-major-mode mode
         "cr" 'gh-md-render-buffer))))
 
+(defun markdown/post-init-valign ()
+  (add-hook 'markdown-mode-hook 'valign-mode))
+
 (defun markdown/post-init-smartparens ()
   (add-hook 'markdown-mode-hook 'smartparens-mode))
 
@@ -58,6 +62,9 @@
     :defer t
     :config
     (progn
+      ;; Make markdown-mode behave a bit more like org w.r.t. code blocks i.e.
+      ;; use proper syntax highlighting
+      (setq markdown-fontify-code-blocks-natively t)
       ;; Declare prefixes and bind keys
       (dolist (prefix '(("mc" . "markdown/command")
                         ("mh" . "markdown/header")
@@ -161,7 +168,7 @@
         "gl" 'outline-next-visible-heading)
       ;; Promotion, Demotion
       (add-hook 'spacemacs-editing-style-hook
-         'spacemacs//markdown-hjkl-promotion-demotion)
+                'spacemacs//markdown-hjkl-promotion-demotion)
       (spacemacs//markdown-hjkl-promotion-demotion dotspacemacs-editing-style)
       (define-key markdown-mode-map (kbd "M-<down>") 'markdown-move-down)
       (define-key markdown-mode-map (kbd "M-<left>") 'markdown-promote)
