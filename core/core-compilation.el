@@ -9,7 +9,10 @@
 ;;
 ;;; License: GPLv3
 
-(defconst spacemacs-compiled-files
+(require 'cl-lib)
+(require 'subr-x)
+
+(defconst spacemacs--compiled-files
   '(;; Built-in libs that we changed
     "core/libs/forks/load-env-vars.el"
     ;; Rest of built-in libs.
@@ -23,13 +26,33 @@
     "core/libs/quelpa.el"
     "core/libs/spinner.el")
   "List of Spacemacs files that should be compiled.
-File paths are relative to the `user-emacs-directory'.")
+File paths are relative to the `spacemacs-start-directory'.")
 
-(defun spacemacs//ensure-compilation (files)
-  "Make sure that the .el FILES are compiled."
+(defun spacemacs//ensure-byte-compilation (files)
+  "Make sure that elisp FILES are byte-compiled."
   (dolist (file files)
-    (let ((fbn (file-name-sans-extension (file-truename file))))
-     (unless (file-exists-p (concat fbn ".elc"))
-       (byte-compile-file (concat fbn ".el"))))))
+    (let ((fbp (file-name-sans-extension (file-truename file))))
+      (unless (file-exists-p (concat fbp ".elc"))
+        (byte-compile-file (concat fbp ".el"))))))
+
+(defun spacemacs//remove-byte-compiled-files (files)
+  "Remove .elc files corresponding to the source FILES."
+  (dolist (file files)
+    (thread-last file
+      (file-truename)
+      (file-name-sans-extension)
+      (format "%s.elc")
+      (delete-file))))
+
+(defun spacemacs//remove-byte-compiled-if-stale (files)
+  "Remove all .elc files corresponding to the source FILES if any is stale."
+  (when (cl-dolist (file files)
+          (let* ((file-el (file-truename file))
+                 (file-elc (thread-last file-el
+                             (file-name-sans-extension)
+                             (format "%s.elc"))))
+            (when (file-newer-than-file-p file-el file-elc)
+              (cl-return t))))
+    (spacemacs//remove-byte-compiled-files files)))
 
 (provide 'core-compilation)
