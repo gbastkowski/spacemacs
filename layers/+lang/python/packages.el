@@ -25,7 +25,7 @@
     (helm-pydoc :requires helm)
     importmagic
     live-py-mode
-    (nose :location local)
+    (nose :location (recipe :fetcher github :repo "syl20bnr/nose.el"))
     org
     pip-requirements
     pipenv
@@ -49,7 +49,6 @@
     (company-anaconda :requires company)
     ;; packages for Microsoft LSP backend
     (lsp-python-ms :requires lsp-mode)
-
     ;; packages for Microsoft's pyright language server
     (lsp-pyright :requires lsp-mode)))
 
