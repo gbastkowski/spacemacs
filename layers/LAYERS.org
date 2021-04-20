@@ -49,6 +49,7 @@
   - [[#dtrt-indent][Dtrt-indent]]
   - [[#ietf][Ietf]]
   - [[#multiple-cursors][Multiple-cursors]]
+  - [[#nav-flash][Nav-flash]]
   - [[#nlinum][Nlinum]]
   - [[#parinfer][Parinfer]]
   - [[#spacemacs-completion][Spacemacs-completion]]
@@ -214,6 +215,7 @@
   - [[#dap][DAP]]
   - [[#debug][Debug]]
   - [[#docker][Docker]]
+  - [[#eww][Eww]]
   - [[#fasd][Fasd]]
   - [[#finance][Finance]]
   - [[#geolocation][Geolocation]]
@@ -751,6 +753,16 @@ Features:
 Features:
 - support for multiple cursors.
 
+** Nav-flash
+[[file:+misc/nav-flash/README.org][+misc/nav-flash/README.org]]
+
+This layer adds [[https://github.com/rolandwalker/nav-flash][nav-flash]] package which temporarily highlights the line
+containing the point, which is sometimes useful for orientation after a
+navigation command.
+
+Features:
+- Fancy flashing line on navigation.
+
 ** Nlinum
 [[file:+misc/nlinum/README.org][+misc/nlinum/README.org]]
 
@@ -822,6 +834,7 @@ Features:
   - package-menu
   - page-break-lines
   - process-menu
+  - quickrun
   - recentf
   - savehist
   - saveplace
@@ -1462,7 +1475,8 @@ as support for batch files.
 
 Features:
 - Syntax highlighting of powershell =.ps1= files via [[https://github.com/jschaf/powershell.el][powershell.el]]
-- Syntax highlighting of batch =.bat= files via [[https://www.emacswiki.org/emacs/DosMode][dos.el]]
+- Syntax highlighting of batch =.bat= files via [[https://git.savannah.gnu.org/cgit/emacs.git/tree/lisp/progmodes/bat-mode.el][bat-mode]]
+- Auto-completion, code-navigation and refactoring capabilities of batch files via [[https://github.com/josteink/bmx-mode][bmx-mode]]
 
 *** Coq
 [[file:+lang/coq/README.org][+lang/coq/README.org]]
@@ -2283,6 +2297,7 @@ This layer adds support for the zig programming language [[https://ziglang.org/]
 
 Features:
 - Syntax Highlighting
+- LSP support via =zls= (see [[file:+lang/zig/README.org][LSP]])
 
 *** Purely functional
 **** Agda
@@ -2778,6 +2793,17 @@ Features:
 - =docker-compose= integration via [[https://github.com/Silex/docker.el][docker.el]]
 - Syntax checking via [[https://github.com/hadolint/hadolint][hadolint]]
 - Code-Completion via =lsp=
+
+** Eww
+[[file:+web/eww/README.org][+web/eww/README.org]]
+
+Ewww.. So ergonomic!
+
+Features:
+- Adds evil key bindings support to eww-mode (including
+  eww-buffers/bookmarks/history-mode)
+- Adds spacemacs functionality to eww-mode
+- Adds ability to easily navigate eww buffers
 
 ** Fasd
 [[file:+tools/fasd/README.org][+tools/fasd/README.org]]
