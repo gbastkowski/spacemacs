@@ -1,8 +1,8 @@
-;;; config.el --- Shell Scripts Layer Configuration File for Spacemacs
+;;; config.el --- compleseus configuration File for Spacemacs
 ;;
 ;; Copyright (c) 2012-2021 Sylvain Benner & Contributors
 ;;
-;; Author: Sylvain Benner <sylvain.benner@gmail.com>
+;; Author: Thanh Vuong <thanhvg@gmail.com>
 ;; URL: https://github.com/syl20bnr/spacemacs
 ;;
 ;; This file is not part of GNU Emacs.
@@ -21,13 +21,7 @@
 ;; along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 
-;; variables
+(defvar compleseus-engine 'vertico
+  "Options are `selectrum', and `vertico' to use as completion
+  engine.")
 
-(spacemacs|define-jump-handlers sh-mode)
-
-(defvar shell-scripts-backend (when (configuration-layer/layer-used-p 'lsp) 'lsp)
-  "The backend to use for IDE features.
-When `lsp' layer is used, defaults to `lsp'.")
-
-(defvar shell-scripts-format-on-save nil
-  "If non-nil, automatically format code with shfmt on save.")

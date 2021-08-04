@@ -12,6 +12,7 @@
   - [[#syntax-checking][Syntax Checking]]
 - [[#completion][Completion]]
   - [[#auto-completion][Auto-completion]]
+  - [[#compleseus][Compleseus]]
   - [[#helm][Helm]]
   - [[#ivy][Ivy]]
   - [[#templates][Templates]]
@@ -356,6 +357,21 @@ Features:
 - Integration with [[https://github.com/capitaomorte/yasnippet][yasnippet]] and [[https://github.com/abo-abo/auto-yasnippet][auto-yasnippet]]
 - Automatic configuration of [[https://www.emacswiki.org/emacs/HippieExpand][hippie-expand]]
 - Automatic docstring tooltips are provided by [[https://github.com/expez/company-quickhelp][company-quickhelp]]
+
+** Compleseus
+[[file:+completion/compleseus/README.org][+completion/compleseus/README.org]]
+
+This layer adds a new way of completion provided by the following core packages:
+- =consult=
+- =embark=
+- =marginalia=
+- =orderless=
+- =selectrum= or =vertico=
+
+This is an WIP and only supports emacs 27 or later. Please contribute.
+
+Features:
+- Same features as =ivy= or =helm=
 
 ** Helm
 [[file:+completion/helm/README.org][+completion/helm/README.org]]
@@ -1324,7 +1340,7 @@ a major-mode for [[http://plantuml.com][plantuml]]. PlantUML is a tool to genera
 
 For help with how to use plantuml, see the [[http://plantuml.com][plantuml website]] and the [[http://plantuml.com/guide][reference guide]].
 
-The official file extension supported by this layer is =.pum=. If you want something else,
+The official file extension supported by this layer is =.pum=. and =.puml=. If you want something else,
 set it in your =user-config= function of your =~/.spacemacs= file.
 
 For example, the following diagram can be defined as follows:
