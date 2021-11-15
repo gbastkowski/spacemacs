@@ -255,13 +255,11 @@
     (embark-collect-mode . consult-preview-at-point-mode)))
 
 (defun compleseus/init-orderless ()
-  (use-package orderless)
+  (use-package orderless
   :init
-  (setq completion-styles '(orderless)
-        ;; for ssh completion
-        completion-category-overrides '((file (styles basic partial-completion)))
+  (setq completion-styles '(basic partial-completion orderless)
         completion-category-defaults nil
-        completion-category-overrides '((file (styles . (partial-completion))))))
+        completion-category-overrides '((file (styles . (partial-completion)))))))
 
 (defun compleseus/init-selectrum ()
   (use-package selectrum
@@ -296,6 +294,10 @@
     ;; Enable recursive minibuffers
     (setq enable-recursive-minibuffers t)
 
+    ;; when vertico is used set this so tab when doing M-: will show suggestions
+    ;; https://github.com/minad/vertico/issues/24
+    (setq completion-in-region-function #'consult-completion-in-region)
+
     ;; Optionally enable cycling for `vertico-next' and `vertico-previous'.
     ;; (setq vertico-cycle t)
     (vertico-mode)
@@ -319,7 +321,6 @@
     (spacemacs/set-leader-keys
       "rl" 'vertico-repeat
       "sl" 'vertico-repeat)))
-
 
 (defun spacemacs/compleseus-wgrep-change-to-wgrep-mode ()
   (interactive)
