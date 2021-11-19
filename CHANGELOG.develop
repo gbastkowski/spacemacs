@@ -197,6 +197,7 @@ the [[file:CHANGELOG.org][CHANGELOG.org]] file.
   - Use ~lsp-ivy~ when ~ivy~ layer is present.
   - added  ~lsp-use-lsp-ui~ variable to control whether ~lsp-ui~ is installed or not.
   - added ~SPC m g h~ to go to call hierarchy.
+  - added ~SPC m g T~ to go to type hierarchy.
 ***** IPython notebook
 - Key bindings;
   - Change prefix from ~SPC a i~ to ~SPC a y~ (thanks to Swaroop C H)
@@ -3417,6 +3418,8 @@ files (thanks to Daniel Nicolai)
     - ~SPC c s d~ Copy rpms to the phone
     - ~SPC c s i~ Install rpms into target
 **** Scala
+- Shortcut keys for common/standard SBT commands (~scalafmtAll~, ~compile~ and ~test~)
+  (thanks to Keith Pinson)
 - Remove long-deprecated Ensime support (thanks to Keith Pinson)
 - Provide an easy way to configure SBT to use a small buffer at the bottom of
   the frame by setting =scala-sbt-window-position= to =bottom= (thanks to Keith
