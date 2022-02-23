@@ -1,8 +1,8 @@
-;;; packages.el --- Quickurl dispatch layer.
+;;; layers.el --- NixOS Layer functions File for Spacemacs
 ;;
-;; Copyright (c) 2012-2021 Sylvain Benner & Contributors
+;; Copyright (c) 2012-2022 Sylvain Benner & Contributors
 ;;
-;; Author: Spenser Truex <web@spensertruex.com>
+;; Author: Sylvain Benner <sylvain.benner@gmail.com>
 ;; URL: https://github.com/syl20bnr/spacemacs
 ;;
 ;; This file is not part of GNU Emacs.
@@ -20,15 +20,6 @@
 ;; You should have received a copy of the GNU General Public License
 ;; along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-(defconst quickurl-packages
-  '((quickurl :location built-in)))
-
-(defun quickurl/init-quickurl ()
-  (spacemacs/declare-prefix "atq" "quickurl")
-  (spacemacs/set-leader-keys
-    "atql" 'quickurl-list
-    "atqq" 'quickurl
-    "atqi" 'quickurl-ask
-    "atqe" 'quickurl-edit-urls
-    "atqa" 'quickurl-add-url
-    "atqb" 'quickurl-browse-url-ask))
+(when (and (boundp 'nix-backend)
+           (eq nix-backend 'lsp))
+  (configuration-layer/declare-layer-dependencies '(lsp)))
