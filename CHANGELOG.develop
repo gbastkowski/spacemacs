@@ -817,6 +817,7 @@ Other:
     default (thanks to Daniel Nicolai)
   - Add evil-jump-backward/forward (=C-o=/=C-i=) keybindings to
     evil-evilified-state-map (thanks to Daniel Nicolai)
+  - Improve helm completion in spacemacs-help (thanks to @dankessler)
 *** Distribution changes
 - Refactored =spacemacs-bootstrap=, =spacemacs-ui=, and =spacemacs-ui-visual=
   layers:
@@ -2096,6 +2097,9 @@ Other:
 - Show user error when location is not set in theme changer
   (thanks to Boris Buliga)
 **** GitHub
+- Layer:
+  - marked as deprecated as functionality is all in =git= layer (thanks
+    to practicalli-john)
 - Packages:
   - Added new packages =forge= (thanks to Miciah Dashiel Butler Masters)
   - Do not install =forge= on Windows by default, see =README.org= of the layer
@@ -2123,6 +2127,8 @@ Other:
   - Remove package =magit-gh-pulls= as it was deprecated in favor of =magithub=
     and =forge= (thanks to Robby O'Connor)
   - Made magithub offline by default (thanks to Miciah Masters)
+- Removed =git-clone= and  =git-search= packages for not using a secure means to
+  store access tokens #1153777 (thanks to @practicalli-john)
 **** Git
 - Key bindings:
   - ~SPC g c~ to clone a repository (thanks to Steven Allen)
@@ -2173,6 +2179,8 @@ Other:
   - Restore magit transient args between sessions (thanks to duianto)
 - Improvements:
   - Added orgit-forge (thanks to Ag Ibragimov)
+  - Add Magit Forge configuration documentation & basic git configuration
+    (thanks to practicalli-john)
 **** Gnus
 - Key bindings:
   - Added ~g r~ for =gnus-group-get-new-news= (thanks to Matthew Leach)
@@ -2882,6 +2890,7 @@ files (thanks to Daniel Nicolai)
 - Change the ~C-n~ and ~C-p~ message keys to their original ~N~ and ~P~ bindings
 - Edit require from =org-notmuch= to =ol-notmuch= as per org-mode update 9.3.1
   (thanks to Loys Ollivier)
+- Fix address completion in notmuch-message mode (thanks to Mattijs Korpershoek)
 **** OCaml
 - Allow initialization without requiring =opam= (thanks to Bernhard Schommer)
 - Fixed misused functions, =merlin= is a package not a layer

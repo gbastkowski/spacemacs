@@ -2558,17 +2558,22 @@ Features:
 - git grep with [[https://github.com/yasuyk/helm-git-grep][helm-git-grep]]
 - org integration with magit via [[https://github.com/magit/orgit][orgit]]
 
-New to Magit? Checkout the [[https://magit.vc/about/][official intro]].
+New to Magit? Checkout the [[https://magit.vc/about/][official intro]] and [[https://practical.li/spacemacs/source-control/][Practicalli Spacemacs]]
+guide to configuring and using the Git and version control layers.
 
 ** GitHub
 [[file:+source-control/github/README.org][+source-control/github/README.org]]
 
-This layers adds support for [[http://github.com][GitHub]].
+*This layer is deprecated*.
+
+The layer had support searching for and cloning [[http://github.com][GitHub]] repositories,
+although that did not provide a secure way to store an access token
+to connect to GitHub.
+
+The git layer provides interaction with GitHub and can securely
+store the access token using PGP.
 
 Features:
-- [[https://github.com/magit/forge][forge]]: integration with various forges, such as GitHub and GitLab.
-- [[https://github.com/sshaw/git-link][git-link]]: quickly generate URLs for commits or files.
-- [[https://github.com/dgtized/github-clone.el][github-clone]] allows for easy cloning and forking of repositories.
 - [[https://github.com/seagle0128/grip-mode][grip-mode]] Github-flavored Markdown/Org preview using [[https://github.com/joeyespo/grip][Grip]].
 
 ** Perforce
