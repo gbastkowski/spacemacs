@@ -1,6 +1,6 @@
 ;;; evil-evilified-state.el --- A minimalistic evil state
 ;;
-;; Copyright (c) 2012-2021 Sylvain Benner & Contributors
+;; Copyright (c) 2012-2022 Sylvain Benner & Contributors
 ;;
 ;; Author: Sylvain Benner <sylvain.benner@gmail.com>
 ;; Keywords: convenience editing evil spacemacs
@@ -206,22 +206,6 @@ Needed to bypass keymaps set as text properties."
 (define-key evil-evilified-state-map (kbd "C-w") 'evil-window-map)
 (setq evil-evilified-state-map-original (copy-keymap evil-evilified-state-map))
 
-;; old macro
-;;;###autoload
-(defmacro evilified-state-evilify (mode map &rest body)
-  "Set `evilified state' as default for MODE.
-
-BODY is a list of additional key bindings to apply for the given MAP in
-`evilified state'."
-  (let ((defkey (when body `(evil-define-key 'evilified ,map ,@body))))
-    `(progn (unless ,(null mode)
-              (unless (or (bound-and-true-p holy-mode)
-                          (eq 'evilified (evil-initial-state ',mode)))
-                (evil-set-initial-state ',mode 'evilified)))
-            (unless ,(null defkey) (,@defkey)))))
-(put 'evilified-state-evilify 'lisp-indent-function 'defun)
-
-;; new macro
 ;;;###autoload
 (defmacro evilified-state-evilify-map (map &rest props)
   "Evilify MAP.

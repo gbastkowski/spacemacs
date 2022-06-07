@@ -1,6 +1,6 @@
 ;;; funcs.el --- Spacemacs Defaults Layer functions File
 ;;
-;; Copyright (c) 2012-2021 Sylvain Benner & Contributors
+;; Copyright (c) 2012-2022 Sylvain Benner & Contributors
 ;;
 ;; Author: Sylvain Benner <sylvain.benner@gmail.com>
 ;; URL: https://github.com/syl20bnr/spacemacs
@@ -1757,6 +1757,15 @@ Decision is based on `dotspacemacs-line-numbers'."
   (or (eq dotspacemacs-line-numbers 'visual)
       (and (listp dotspacemacs-line-numbers)
            (car (spacemacs/mplist-get-values dotspacemacs-line-numbers :visual)))))
+
+(defun spacemacs/line-numbers-type ()
+  "Returns a valid value for `display-line-numbers', activating
+line numbers, with respect to `dotspacemacs-line-numbers'."
+  (if (listp dotspacemacs-line-numbers)
+      (cond ((car (spacemacs/mplist-get-values dotspacemacs-line-numbers :visual)) 'visual)
+            ((car (spacemacs/mplist-get-values dotspacemacs-line-numbers :relative)) 'relative)
+            (t t))
+    dotspacemacs-line-numbers))
 
 (defun spacemacs//linum-on (origfunc &rest args)
   "Advice function to improve `linum-on' function."
