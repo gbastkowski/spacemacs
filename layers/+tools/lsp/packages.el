@@ -28,7 +28,7 @@
     (consult-lsp :requires consult)
     (helm-lsp :requires helm)
     (lsp-ivy :requires ivy)
-    (lsp-treemacs :requires treemacs)
+    (lsp-treemacs :requires treemacs treemacs-extensions)
     (lsp-origami :requires lsp-mode)
     popwin))
 

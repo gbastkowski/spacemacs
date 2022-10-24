@@ -26,6 +26,7 @@
   '(
     golden-ratio
     treemacs
+    treemacs-extensions
     (treemacs-evil :toggle (memq dotspacemacs-editing-style '(vim hybrid)))
     (treemacs-icons-dired :toggle treemacs-use-icons-dired)
     (treemacs-all-the-icons :toggle treemacs-use-all-the-icons-theme)
@@ -90,6 +91,10 @@
         (treemacs-git-mode -1))
       (add-to-list 'spacemacs-window-split-ignore-prefixes
                    treemacs--buffer-name-prefix))))
+
+(defun treemacs/init-treemacs-extensions ()
+  (use-package treemacs-extensions
+    :after treemacs))
 
 (defun treemacs/init-treemacs-evil ()
   (use-package treemacs-evil
