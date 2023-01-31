@@ -1,0 +1,26 @@
+#+TITLE: osm layer
+
+#+TAGS: layer|tool
+
+* Table of Contents                     :TOC_5_gh:noexport:
+- [[#description][Description]]
+  - [[#features][Features:]]
+- [[#install][Install]]
+- [[#key-bindings][Key bindings]]
+
+* Description
+OpenStreetMap in Emacs.
+
+** Features:
+Add OSM to Emacs.
+
+* Install
+To use this configuration layer, add it to your =~/.spacemacs=. You will need to
+add =osm= to the existing =dotspacemacs-configuration-layers= list in this
+file.
+
+* Key bindings
+TBD
+
+| Key binding   | Description      | Function         |
+|---------------+------------------+------------------|
