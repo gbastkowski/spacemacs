@@ -1,6 +1,6 @@
 (defconst osm-packages '(osm))
 
-(defun eww/init-osm ()
+(defun osm/init-osm ()
   (use-package osm
     :defer t
     :init
