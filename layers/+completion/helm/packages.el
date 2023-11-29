@@ -220,7 +220,7 @@
   (use-package helm-ag
     :defer (spacemacs/defer)
     :init
-    (setq helm-ag-use-grep-ignore-list t)
+    (setq helm-ag-use-grep-ignore-list nil)
     ;; This overrides the default C-s action in helm-projectile-switch-project
     ;; to search using rg/ag/pt/whatever instead of just grep
     (with-eval-after-load 'helm-projectile
