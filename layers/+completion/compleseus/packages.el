@@ -31,6 +31,9 @@
     consult-yasnippet
     embark
     embark-consult
+    (helm-make :location (recipe :fetcher github
+                                 :repo "myrgy/helm-make"
+                                 :branch "add_emacs_completion"))
     orderless
     persp-mode
     (selectrum :toggle (eq compleseus-engine 'selectrum))
@@ -56,6 +59,17 @@
 (defun compleseus/post-init-imenu ()
   (spacemacs/set-leader-keys "ji" 'spacemacs/consult-jump-in-buffer)
   (spacemacs/set-leader-keys "sj" 'spacemacs/consult-jump-in-buffer))
+
+(defun compleseus/init-helm-make ()
+  (use-package helm-make
+    :defer t
+    :init
+    ;; TODO: Ideally, this should use vertico instead, but helm-make can't do
+    ;; that yet: blocked on https://github.com/abo-abo/helm-make/pull/62
+    (setq helm-make-completion-method 'ido)
+    (spacemacs/set-leader-keys
+      "cc" 'helm-make-projectile
+      "cm" 'helm-make)))
 
 (defun compleseus/init-marginalia ()
   (use-package marginalia
@@ -141,7 +155,7 @@
       dotspacemacs-emacs-command-key 'execute-extended-command
       "#" #'consult-register
       "*" #'spacemacs/compleseus-search-default
-      "/" #'spacemacs/compleseus-search-projectile-auto
+      "/" #'spacemacs/compleseus-search-projectile
       "bb" #'spacemacs/compleseus-switch-to-buffer
       "bB" #'consult-buffer
       "fb" #'consult-bookmark
@@ -151,16 +165,19 @@
       "hm" #'consult-man
       "jm" #'consult-mark
       "jM" #'consult-global-mark
-      "sb" #'consult-line-multi
-      "sB" #'spacemacs/consult-line-multi
-      "ss" #'consult-line
-      "sS" #'spacemacs/consult-line
+      "sb" #'spacemacs/consult-line-multi
+      "sB" #'spacemacs/consult-line-multi-symbol
+      "ss" #'spacemacs/consult-line
+      "sS" #'spacemacs/consult-line-symbol
       "sk" #'consult-keep-lines
       "rc" #'consult-complex-command
       "su" #'consult-focus-lines
       "sf" #'spacemacs/compleseus-search-auto
+      "sF" #'spacemacs/compleseus-search-auto-symbol
       "sd" #'spacemacs/compleseus-search-dir
+      "sD" #'spacemacs/compleseus-search-dir-symbol
       "sp" #'spacemacs/compleseus-search-projectile
+      "sP" #'spacemacs/compleseus-search-projectile-symbol
       "ry" #'consult-yank-from-kill-ring
       "Ts" #'consult-theme)
 
@@ -432,7 +449,6 @@
     "w" 'spacemacs/compleseus-grep-change-to-wgrep-mode))
 
 (defun compleseus/init-wgrep ()
-  (add-hook 'spacemacs-editing-style-hook #'spacemacs//set-initial-grep-state)
   (evil-define-key 'normal wgrep-mode-map ",," #'spacemacs/wgrep-finish-edit)
   (evil-define-key 'normal wgrep-mode-map ",c" #'spacemacs/wgrep-finish-edit)
   (evil-define-key 'normal wgrep-mode-map ",a" #'spacemacs/wgrep-abort-changes)
