@@ -72,7 +72,7 @@
     :config
     (dolist (mode haskell-modes)
       (spacemacs/set-leader-keys-for-major-mode mode
-        "gb" 'xref-pop-marker-stack
+        "gb" 'xref-go-back
         "ht" 'dante-type-at
         "hT" 'spacemacs-haskell//dante-insert-type
         "hi" 'dante-info
@@ -93,8 +93,8 @@
 
 (defun haskell/post-init-flycheck ()
   (add-hook 'dante-mode-hook
-              (lambda () (flycheck-add-next-checker 'haskell-dante '(warning . haskell-hlint)))
-  (spacemacs/enable-flycheck 'haskell-mode)))
+            (lambda () (flycheck-add-next-checker 'haskell-dante '(warning . haskell-hlint)))
+            (spacemacs/enable-flycheck 'haskell-mode)))
 
 
 (defun haskell/init-flycheck-haskell ()

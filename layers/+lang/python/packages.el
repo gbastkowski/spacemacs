@@ -74,7 +74,6 @@
     (spacemacs/set-leader-keys-for-major-mode 'python-mode
       "hh" 'anaconda-mode-show-doc
       "ga" 'anaconda-mode-find-assignments
-      "gb" 'xref-pop-marker-stack
       "gu" 'anaconda-mode-find-references)
     ;; new anaconda-mode (2018-06-03) removed `anaconda-view-mode-map' in
     ;; favor of xref. Eventually we need to remove this part.
@@ -396,6 +395,7 @@
       "cc" 'spacemacs/python-execute-file
       "cC" 'spacemacs/python-execute-file-focus
       "db" 'spacemacs/python-toggle-breakpoint
+      "gb" 'xref-go-back
       "ri" 'spacemacs/python-remove-unused-imports
       "sB" 'spacemacs/python-shell-send-buffer-switch
       "sb" 'spacemacs/python-shell-send-buffer
@@ -454,9 +454,7 @@
   (when (configuration-layer/package-used-p 'anaconda-mode)
     (add-hook 'python-mode-hook
               'spacemacs//disable-semantic-idle-summary-mode t))
-  (spacemacs/add-to-hook 'python-mode-hook
-                         '(semantic-mode
-                           spacemacs//python-imenu-create-index-use-semantic-maybe)))
+  (add-hook 'python-mode-hook 'semantic-mode))
 
 (defun python/pre-init-smartparens ()
   (spacemacs|use-package-add-hook smartparens
