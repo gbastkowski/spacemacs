@@ -33,18 +33,20 @@
     eldoc
     evil-cleverparens
     flycheck
-    (flycheck-clojure :toggle (memq 'squiggly (if (listp clojure-enable-linters)
+    (flycheck-clojure :requires flycheck
+                      :toggle (memq 'squiggly (if (listp clojure-enable-linters)
                                                   clojure-enable-linters
                                                 (list clojure-enable-linters))))
-    (flycheck-clj-kondo :toggle (memq 'clj-kondo (if (listp clojure-enable-linters)
+    (flycheck-clj-kondo :requires flycheck
+                        :toggle (memq 'clj-kondo (if (listp clojure-enable-linters)
                                                      clojure-enable-linters
                                                    (list clojure-enable-linters))))
-    (flycheck-joker :toggle (memq 'joker (if (listp clojure-enable-linters)
+    (flycheck-joker :requires flycheck
+                    :toggle (memq 'joker (if (listp clojure-enable-linters)
                                              clojure-enable-linters
                                            (list clojure-enable-linters))))
     ggtags
     (kaocha-runner :toggle clojure-enable-kaocha-runner)
-    counsel-gtags
     org
     popwin
     (sayid :toggle clojure-enable-sayid)
@@ -476,8 +478,6 @@
 (defun clojure/post-init-ggtags ()
   (add-hook 'clojure-mode-local-vars-hook #'spacemacs/ggtags-mode-enable))
 
-(defun clojure/post-init-counsel-gtags nil)
-
 (defun clojure/init-clojure-snippets ()
   (use-package clojure-snippets
     :defer t))
@@ -610,16 +610,13 @@
 
 (defun clojure/init-flycheck-clojure ()
   (use-package flycheck-clojure
-    :if (configuration-layer/package-usedp 'flycheck)
     :config
     (flycheck-clojure-setup)
     (with-eval-after-load 'cider
       (flycheck-clojure-inject-jack-in-dependencies))))
 
 (defun clojure/init-flycheck-clj-kondo ()
-  (use-package flycheck-clj-kondo
-    :if (configuration-layer/package-usedp 'flycheck)))
+  (use-package flycheck-clj-kondo))
 
 (defun clojure/init-flycheck-joker ()
-  (use-package flycheck-joker
-    :if (configuration-layer/package-usedp 'flycheck)))
+  (use-package flycheck-joker))
