@@ -29,4 +29,7 @@
 
 (defun github-copilot/init-copilot ()
   (use-package copilot
+    :custom
+    (copilot-enable-predicates '(spacemacs//copilot-enable-predicate
+                                 copilot--buffer-changed))
     :defer t))

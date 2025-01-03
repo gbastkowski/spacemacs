@@ -861,9 +861,15 @@ ones created by `magit' and `dired'."
     (user-error "Current buffer is not visiting a file or directory")))
 
 (defun spacemacs/copy-file-path ()
-  "Copy and show the file path of the current buffer."
+  "Copy and show the file path of the current buffer.
+
+In Dired, the result will be the file path under cursor if any,
+otherwise the listed directory's path."
   (interactive)
-  (if-let* ((file-path (spacemacs--file-path)))
+  (if-let* ((file-path (or (spacemacs--file-path)
+                           (and (derived-mode-p 'dired-mode)
+                                (dired-get-filename nil t))
+                           (spacemacs--directory-path))))
       (progn
         (kill-new file-path)
         (message "%s" file-path))
@@ -939,6 +945,11 @@ variable."
   (interactive)
   (ediff-files (dotspacemacs/location)
                (concat dotspacemacs-template-directory ".spacemacs.template")))
+
+(defun spacemacs//ediff-buffer-outline-show-all ()
+  "Try `outline-show-all' for ediff buffers."
+  (when (fboundp 'outline-show-all)
+    (outline-show-all)))
 
 (defun spacemacs/new-empty-buffer (&optional split)
   "Create a new buffer called: \"untitled\".
